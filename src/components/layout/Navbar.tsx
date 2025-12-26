@@ -23,6 +23,10 @@ export function Navbar() {
     const [isOpen, setIsOpen] = React.useState(false)
     const { t } = useLanguage()
 
+    if (pathname.startsWith("/admin") || pathname === "/login") {
+        return null
+    }
+
     const routes = [
         {
             href: "/projects",

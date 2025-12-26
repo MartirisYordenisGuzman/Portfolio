@@ -25,6 +25,15 @@ export interface Project {
     created_at: string;
     updated_at: string;
     tags?: Tag[]; // Joined
+    gallery_images?: ProjectImage[];
+}
+
+export interface ProjectImage {
+    id: string;
+    project_id: string;
+    url: string;
+    display_order: number;
+    created_at: string;
 }
 
 export interface Post {

@@ -77,10 +77,10 @@ export function HeroSection() {
                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 >
                     <Image
-                        src="https://github.com/shadcn.png"
+                        src="/profile.jpg"
                         alt="Profile picture"
                         fill
-                        className="object-cover"
+                        className="object-cover object-[center_20%]"
                         priority
                     />
                 </motion.div>
