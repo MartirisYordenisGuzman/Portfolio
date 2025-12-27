@@ -1,21 +1,8 @@
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { Button } from "@/components/ui/button"
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table" // Note: Assuming Table components exist, if not I'll fallback to simple divs or check utils. 
-// Wait, I didn't check if Table exists. I'll assume standard Shadcn setup has it or I'll use simple layout.
-// Actually, I'll check first or use standard HTML table with Tailwind to be safe. 
-// Let's use standard HTML/Tailwind to avoid missing component errors, or check previously.
-// I saw "badge.tsx", "button.tsx"... no "table.tsx" in the list_dir I did earlier!!
-// So I must use standard HTML table.
-
-import { Edit, Plus, Trash2 } from "lucide-react"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Plus, Edit, Trash2 } from "lucide-react"
 import { deleteTag } from "@/app/admin/actions"
 
 export default async function AdminTagsPage() {
@@ -34,19 +21,21 @@ export default async function AdminTagsPage() {
             <div className="flex items-center justify-between">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight">Etiquetas</h1>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground hidden sm:block">
                         Gestiona las categorías y tecnologías de tu portafolio
                     </p>
                 </div>
                 <Button asChild>
                     <Link href="/admin/tags/new">
                         <Plus className="mr-2 h-4 w-4" />
-                        Nueva Etiqueta
+                        <span className="hidden sm:inline">Nueva Etiqueta</span>
+                        <span className="sm:hidden">Nueva</span>
                     </Link>
                 </Button>
             </div>
 
-            <div className="rounded-md border bg-card">
+            {/* Desktop View (Table) */}
+            <div className="hidden md:block rounded-md border bg-card">
                 <div className="relative w-full overflow-auto">
                     <table className="w-full caption-bottom text-sm text-left">
                         <thead className="[&_tr]:border-b">
@@ -90,6 +79,45 @@ export default async function AdminTagsPage() {
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            {/* Mobile View (Cards) */}
+            <div className="grid gap-4 md:hidden">
+                {tags?.map((tag) => (
+                    <Card key={tag.id}>
+                        <CardHeader className="pb-2">
+                            <CardTitle className="text-lg font-bold leading-none">{tag.name}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="pb-2 text-sm text-muted-foreground">
+                            <div className="flex justify-between">
+                                <span>Slug:</span>
+                                <span>{tag.slug}</span>
+                            </div>
+                        </CardContent>
+                        <CardFooter className="flex justify-end gap-2 pt-2">
+                            <Link href={`/admin/tags/${tag.id}/edit`}>
+                                <Button variant="outline" size="sm" className="gap-2">
+                                    <Edit className="h-4 w-4" />
+                                    Editar
+                                </Button>
+                            </Link>
+                            <form action={async () => {
+                                "use server"
+                                await deleteTag(tag.id)
+                            }}>
+                                <Button variant="destructive" size="sm" className="gap-2">
+                                    <Trash2 className="h-4 w-4" />
+                                    Eliminar
+                                </Button>
+                            </form>
+                        </CardFooter>
+                    </Card>
+                ))}
+                {tags?.length === 0 && (
+                    <div className="p-4 text-center text-muted-foreground border rounded-md">
+                        No hay etiquetas creadas.
+                    </div>
+                )}
             </div>
         </div>
     )

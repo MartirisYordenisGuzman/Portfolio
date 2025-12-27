@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Phone, Instagram, Twitter, Facebook, Linkedin } from "lucide-react"
+import { Mail, Phone, Instagram, Facebook, Linkedin } from "lucide-react"
 import { toast } from "sonner"
 import { useLanguage } from "@/providers/language-provider"
 
@@ -42,7 +42,7 @@ export default function ContactPage() {
             })
 
             setFormData({ name: "", email: "", message: "" })
-        } catch (_) {
+        } catch (_error) {
             toast.error(t.contact.error_title, {
                 description: t.contact.error_desc, // In real app use specific error msg if safe
             })
@@ -84,17 +84,17 @@ export default function ContactPage() {
                     <div className="space-y-3">
                         <h3 className="font-semibold text-sm uppercase text-muted-foreground">Follow Us</h3>
                         <div className="flex gap-4">
-                            <a href="#" className="rounded-full bg-foreground p-2 text-background hover:opacity-80 transition-opacity">
+                            <a href="https://www.instagram.com/martirisyordenys/" target="_blank" className="rounded-full bg-foreground p-2 text-background hover:opacity-80 transition-opacity">
                                 <Instagram className="h-5 w-5" />
                             </a>
-                            <a href="#" className="rounded-full bg-foreground p-2 text-background hover:opacity-80 transition-opacity">
+                            <a href="https://www.facebook.com/martirisyordenysguzman/" target="_blank" className="rounded-full bg-foreground p-2 text-background hover:opacity-80 transition-opacity">
                                 <Facebook className="h-5 w-5" />
                             </a>
                             <a href="https://www.linkedin.com/in/martiris-yordenis-guzmán" target="_blank" className="rounded-full bg-foreground p-2 text-background hover:opacity-80 transition-opacity">
                                 <Linkedin className="h-5 w-5" />
                             </a>
-                            <a href="#" className="rounded-full bg-foreground p-2 text-background hover:opacity-80 transition-opacity">
-                                <Twitter className="h-5 w-5" />
+                            <a href="https://x.com/GuzmanMartiris" target="_blank" className="rounded-full bg-foreground p-2 text-background hover:opacity-80 transition-opacity">
+                                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 fill-current"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg>
                             </a>
                         </div>
                     </div>

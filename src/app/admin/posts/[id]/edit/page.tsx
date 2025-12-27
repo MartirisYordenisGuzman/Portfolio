@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server"
+import { Tag } from "@/types/database"
 import { PostForm } from "@/components/features/admin/PostForm"
 import { notFound } from "next/navigation"
 
@@ -35,7 +36,7 @@ export default async function EditPostPage({ params }: EditPostPageProps) {
     // Transform post tags
     const postWithTags = {
         ...post,
-        tags: post.post_tags?.map((pt: any) => pt.tags) || []
+        tags: post.post_tags?.map((pt: { tags: Tag }) => pt.tags) || []
     }
 
     return (

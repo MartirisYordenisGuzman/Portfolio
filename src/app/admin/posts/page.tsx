@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { PlusCircle, Pencil, Trash2 } from "lucide-react"
 import { deletePost } from "@/app/admin/actions"
 
@@ -18,12 +19,14 @@ export default async function AdminPostsPage() {
                 <Link href="/admin/posts/new">
                     <Button className="gap-2">
                         <PlusCircle className="h-4 w-4" />
-                        Nuevo Post
+                        <span className="hidden sm:inline">Nuevo Post</span>
+                        <span className="sm:hidden">Nuevo</span>
                     </Button>
                 </Link>
             </div>
 
-            <div className="rounded-md border bg-card">
+            {/* Desktop View (Table) */}
+            <div className="hidden md:block rounded-md border bg-card">
                 <div className="relative w-full overflow-auto">
                     <table className="w-full caption-bottom text-sm">
                         <thead className="[&_tr]:border-b">
@@ -41,8 +44,8 @@ export default async function AdminPostsPage() {
                                     <td className="p-4 align-middle font-medium">{post.title}</td>
                                     <td className="p-4 align-middle">
                                         <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${post.status === 'published'
-                                                ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-                                                : 'bg-destructive text-destructive-foreground hover:bg-destructive/80'
+                                            ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                                            : 'bg-destructive text-destructive-foreground hover:bg-destructive/80'
                                             }`}>
                                             {post.status}
                                         </span>
@@ -83,6 +86,53 @@ export default async function AdminPostsPage() {
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            {/* Mobile View (Cards) */}
+            <div className="grid gap-4 md:hidden">
+                {posts?.map((post) => (
+                    <Card key={post.id}>
+                        <CardHeader className="pb-2">
+                            <div className="flex justify-between items-start">
+                                <CardTitle className="text-lg font-bold leading-none">{post.title}</CardTitle>
+                                <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${post.status === 'published'
+                                    ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                                    : 'bg-destructive text-destructive-foreground hover:bg-destructive/80'
+                                    }`}>
+                                    {post.status}
+                                </span>
+                            </div>
+                        </CardHeader>
+                        <CardContent className="pb-2 text-sm text-muted-foreground">
+                            <div className="flex justify-between">
+                                <span>Publicado:</span>
+                                <span>{post.published_at ? new Date(post.published_at).toLocaleDateString() : '-'}</span>
+                            </div>
+                        </CardContent>
+                        <CardFooter className="flex justify-end gap-2 pt-2">
+                            <Link href={`/admin/posts/${post.id}/edit`}>
+                                <Button variant="outline" size="sm" className="gap-2">
+                                    <Pencil className="h-4 w-4" />
+                                    Editar
+                                </Button>
+                            </Link>
+                            <form action={async () => {
+                                "use server"
+                                await deletePost(post.id)
+                            }}>
+                                <Button variant="destructive" size="sm" className="gap-2">
+                                    <Trash2 className="h-4 w-4" />
+                                    Eliminar
+                                </Button>
+                            </form>
+                        </CardFooter>
+                    </Card>
+                ))}
+                {(!posts || posts.length === 0) && (
+                    <div className="p-4 text-center text-muted-foreground border rounded-md">
+                        No hay posts creados.
+                    </div>
+                )}
             </div>
         </div>
     )

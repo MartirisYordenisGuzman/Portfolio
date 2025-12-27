@@ -34,12 +34,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     }
 
     return (
-        <article className="min-h-screen pb-20 animate-in fade-in duration-700 slide-in-from-bottom-4 pt-6 md:pt-20">
+        <article className="min-h-screen pb-20 pt-10 md:pt-24 animate-in fade-in duration-700 slide-in-from-bottom-4">
             {/* Main Reading Column */}
-            <div className="container max-w-3xl mx-auto px-4 sm:px-6">
+            <div className="container max-w-3xl mx-auto px-6 md:px-0">
 
                 {/* Back Link */}
-                <div className="mb-6 md:mb-10">
+                <div className="mb-8 md:mb-12">
                     <Link
                         href="/projects"
                         className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -50,18 +50,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </div>
 
                 {/* Article Header */}
-                <header className="space-y-4 md:space-y-6 mb-8 md:mb-10">
+                <header className="space-y-6 md:space-y-8 mb-12 md:mb-16">
                     <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-tight">
                         {project.title}
                     </h1>
 
-                    <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed font-light">
+                    <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
                         {project.short_description}
                     </p>
 
                     {/* Meta / Author Bar */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between py-6 border-y gap-4">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between py-8 border-y gap-6 mt-8 md:mt-10">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-sm text-muted-foreground">
                             {project.published_at && (
                                 <div className="flex items-center">
                                     <span className="font-medium text-foreground mr-2">Publicado</span>
@@ -79,7 +79,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         <div className="flex gap-3">
                             {project.demo_url && (
                                 <Link href={project.demo_url} target="_blank">
-                                    <Button variant="outline" size="sm" className="rounded-full h-8 w-8 p-0" title="Ver Demo">
+                                    <Button variant="outline" size="sm" className="rounded-full h-9 w-9 p-0" title="Ver Demo">
                                         <Globe className="h-4 w-4" />
                                         <span className="sr-only">Live Demo</span>
                                     </Button>
@@ -87,7 +87,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             )}
                             {project.github_url && (
                                 <Link href={project.github_url} target="_blank">
-                                    <Button variant="outline" size="sm" className="rounded-full h-8 w-8 p-0" title="Ver Código">
+                                    <Button variant="outline" size="sm" className="rounded-full h-9 w-9 p-0" title="Ver Código">
                                         <Github className="h-4 w-4" />
                                         <span className="sr-only">Github Code</span>
                                     </Button>
@@ -99,7 +99,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
                 {/* Image Gallery */}
                 {(project.cover_image || (project.gallery_images && project.gallery_images.length > 0)) && (
-                    <figure className="mb-12 md:mb-16">
+                    <figure className="mb-16 md:mb-24">
                         <ImageGallery
                             images={[project.cover_image || "", ...(project.gallery_images?.map(img => img.url) || [])].filter(Boolean)}
                             title={project.title}
@@ -111,7 +111,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 )}
 
                 {/* Content */}
-                <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none prose-headings:font-heading prose-headings:font-bold prose-a:text-primary prose-img:rounded-lg leading-loose">
+                <div className="prose prose-base md:prose-lg dark:prose-invert max-w-none prose-headings:font-heading prose-headings:font-bold prose-a:text-primary prose-img:rounded-lg leading-loose space-y-6">
                     {project.content ? (
                         <MDXRemote source={project.content} />
                     ) : (
@@ -122,7 +122,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </div>
 
                 {/* Footer Tags */}
-                <div className="mt-12 md:mt-16 py-12 border-t">
+                <div className="mt-16 md:mt-24 py-12 border-t">
                     <div className="flex flex-wrap gap-2">
                         {project.tags?.map((tag: Tag) => (
                             <Badge key={tag.id} variant="secondary" className="px-3 py-1 text-sm font-normal rounded-full">
