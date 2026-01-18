@@ -76,7 +76,7 @@ export const translations = {
                         "Linux / Windows (entornos de desarrollo)",
                         "REST APIs",
                         "Vercel (deploy automático)",
-                        "Postman / Thunder Client"
+                        "Postman"
                     ]
                 }
             ],
@@ -182,7 +182,7 @@ export const translations = {
                         "Linux / Windows (Dev Environments)",
                         "REST APIs",
                         "Vercel (Automatic Deploy)",
-                        "Postman / Thunder Client"
+                        "Postman"
                     ]
                 }
             ],
