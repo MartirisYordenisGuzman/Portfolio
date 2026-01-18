@@ -38,6 +38,15 @@ export default function AboutPage() {
                                 <p>
                                     {t.about.story_p2}
                                 </p>
+                                <p>
+                                    {t.about.story_p3}
+                                </p>
+                                <p>
+                                    {t.about.story_p4}
+                                </p>
+                                <p>
+                                    {t.about.story_p5}
+                                </p>
                             </div>
                         </section>
                     </ScrollAnimation>
