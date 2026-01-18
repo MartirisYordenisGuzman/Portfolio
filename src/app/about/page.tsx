@@ -56,24 +56,16 @@ export default function AboutPage() {
                         <section className="space-y-6">
                             <h2 className="text-2xl font-bold">{t.about.stack_title}</h2>
                             <div className="grid gap-6 sm:grid-cols-2">
-                                <div className="space-y-3">
-                                    <h3 className="font-medium text-lg">Frontend Core</h3>
-                                    <ul className="list-disc pl-5 text-muted-foreground space-y-1">
-                                        <li>React 18+ (RSC, Suspense)</li>
-                                        <li>Next.js App Router</li>
-                                        <li>TypeScript (Strict Mode)</li>
-                                        <li>Tailwind CSS & Design Systems</li>
-                                    </ul>
-                                </div>
-                                <div className="space-y-3">
-                                    <h3 className="font-medium text-lg">Backend & Infra</h3>
-                                    <ul className="list-disc pl-5 text-muted-foreground space-y-1">
-                                        <li>Node.js / Bun</li>
-                                        <li>PostgreSQL (Supabase)</li>
-                                        <li>Docker & CI/CD (GitHub Actions)</li>
-                                        <li>AWS (Lambda, S3, CloudFront)</li>
-                                    </ul>
-                                </div>
+                                {t.about.stack.map((category, index) => (
+                                    <div key={index} className="space-y-3">
+                                        <h3 className="font-medium text-lg">{category.category}</h3>
+                                        <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+                                            {category.items.map((item, itemIndex) => (
+                                                <li key={itemIndex}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
                             </div>
                         </section>
                     </ScrollAnimation>

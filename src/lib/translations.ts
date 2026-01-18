@@ -37,6 +37,49 @@ export const translations = {
             story_p4: "Además, cuento con certificaciones de freeCodeCamp en Diseño Web Responsivo y Estructuras de Datos y Algoritmos en JavaScript, lo que ha fortalecido mis bases técnicas y mi enfoque en la escritura de código limpio y bien estructurado.",
             story_p5: "Hoy continúo formándome de manera constante, con el objetivo de seguir creciendo como desarrollador y aportar soluciones tecnológicas prácticas, escalables y bien diseñadas.",
             stack_title: "Arsenal Técnico",
+            stack: [
+                {
+                    category: "Frontend Core",
+                    items: [
+                        "React 18+ (Hooks, Server Components, Suspense)",
+                        "Next.js (App Router, SSR, SSG)",
+                        "TypeScript (Strict Mode)",
+                        "Tailwind CSS (Design Systems, UI moderna)",
+                        "Sass / SCSS (arquitectura de estilos, componentes reutilizables)",
+                        "Responsive Web Design (Mobile-first, accesibilidad)"
+                    ]
+                },
+                {
+                    category: "Backend & Infra",
+                    items: [
+                        "Node.js (APIs, lógica de negocio)",
+                        "PostgreSQL (Supabase)",
+                        "Autenticación y manejo de usuarios (Supabase Auth)",
+                        "Docker (entornos reproducibles)",
+                        "CI/CD (GitHub Actions)",
+                        "AWS (Lambda, S3, CloudFront)"
+                    ]
+                },
+                {
+                    category: "Lenguajes & Fundamentos",
+                    items: [
+                        "JavaScript (ES6+)",
+                        "TypeScript",
+                        "Python (bases, automatización, IA)",
+                        "Estructuras de Datos y Algoritmos (freeCodeCamp)"
+                    ]
+                },
+                {
+                    category: "Herramientas & Ecosistema",
+                    items: [
+                        "Git & GitHub (control de versiones, flujos de trabajo)",
+                        "Linux / Windows (entornos de desarrollo)",
+                        "REST APIs",
+                        "Vercel (deploy automático)",
+                        "Postman / Thunder Client"
+                    ]
+                }
+            ],
             connect_title: "Conectemos",
             connect_desc: "Actualmente estoy abierto a nuevas oportunidades donde pueda aportar valor arquitectónico y liderazgo técnico.",
             btn_contact: "Contáctame",
@@ -100,6 +143,49 @@ export const translations = {
             story_p4: "In addition, I have certifications from freeCodeCamp in Responsive Web Design and JavaScript Algorithms and Data Structures, which has strengthened my technical foundations and my focus on writing clean and well-structured code.",
             story_p5: "Today I continue to train constantly, with the goal of continuing to grow as a developer and providing practical, scalable, and well-designed technological solutions.",
             stack_title: "Technical Arsenal",
+            stack: [
+                {
+                    category: "Frontend Core",
+                    items: [
+                        "React 18+ (Hooks, Server Components, Suspense)",
+                        "Next.js (App Router, SSR, SSG)",
+                        "TypeScript (Strict Mode)",
+                        "Tailwind CSS (Design Systems, Modern UI)",
+                        "Sass / SCSS (Style Architecture, Reusable Components)",
+                        "Responsive Web Design (Mobile-first, Accessibility)"
+                    ]
+                },
+                {
+                    category: "Backend & Infra",
+                    items: [
+                        "Node.js (APIs, Business Logic)",
+                        "PostgreSQL (Supabase)",
+                        "Authentication & User Management (Supabase Auth)",
+                        "Docker (Reproducible Environments)",
+                        "CI/CD (GitHub Actions)",
+                        "AWS (Lambda, S3, CloudFront)"
+                    ]
+                },
+                {
+                    category: "Languages & Fundamentals",
+                    items: [
+                        "JavaScript (ES6+)",
+                        "TypeScript",
+                        "Python (Basics, Automation, AI)",
+                        "Data Structures & Algorithms (freeCodeCamp)"
+                    ]
+                },
+                {
+                    category: "Tools & Ecosystem",
+                    items: [
+                        "Git & GitHub (Version Control, Workflows)",
+                        "Linux / Windows (Dev Environments)",
+                        "REST APIs",
+                        "Vercel (Automatic Deploy)",
+                        "Postman / Thunder Client"
+                    ]
+                }
+            ],
             connect_title: "Let's Connect",
             connect_desc: "I am currently open to new opportunities where I can provide architectural value and technical leadership.",
             btn_contact: "Contact Me",
