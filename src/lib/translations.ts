@@ -65,7 +65,7 @@ export const translations = {
                     items: [
                         "JavaScript (ES6+)",
                         "TypeScript",
-                        "Python (bases, automatización, IA)",
+                        "Python (bases, IA)",
                         "Estructuras de Datos y Algoritmos (freeCodeCamp)"
                     ]
                 },
@@ -171,7 +171,7 @@ export const translations = {
                     items: [
                         "JavaScript (ES6+)",
                         "TypeScript",
-                        "Python (Basics, Automation, AI)",
+                        "Python (Basics, AI)",
                         "Data Structures & Algorithms (freeCodeCamp)"
                     ]
                 },
