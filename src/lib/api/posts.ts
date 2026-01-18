@@ -10,10 +10,14 @@ interface PostWithTags extends Post {
 
 export const getPosts = unstable_cache(
     async (): Promise<Post[]> => {
-        const supabase = createStaticClient(
-            process.env.NEXT_PUBLIC_SUPABASE_URL!,
-            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        );
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+            throw new Error("Missing Supabase Environment Variables: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY must be set.");
+        }
+
+        const supabase = createStaticClient(supabaseUrl, supabaseAnonKey);
 
         const { data, error } = await supabase
             .from("posts")
@@ -45,10 +49,14 @@ export const getPosts = unstable_cache(
 
 export const getPostBySlug = unstable_cache(
     async (slug: string): Promise<Post | null> => {
-        const supabase = createStaticClient(
-            process.env.NEXT_PUBLIC_SUPABASE_URL!,
-            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        );
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+            throw new Error("Missing Supabase Environment Variables: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY must be set.");
+        }
+
+        const supabase = createStaticClient(supabaseUrl, supabaseAnonKey);
         const decodedSlug = decodeURIComponent(slug);
 
         // First try: Direct exact match

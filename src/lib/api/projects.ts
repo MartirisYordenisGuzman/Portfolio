@@ -10,10 +10,14 @@ interface ProjectWithTags extends Project {
 
 export const getProjects = unstable_cache(
     async (): Promise<Project[]> => {
-        const supabase = createStaticClient(
-            process.env.NEXT_PUBLIC_SUPABASE_URL!,
-            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        );
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+            throw new Error("Missing Supabase Environment Variables: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY must be set.");
+        }
+
+        const supabase = createStaticClient(supabaseUrl, supabaseAnonKey);
 
         const { data, error } = await supabase
             .from("projects")
@@ -45,10 +49,14 @@ export const getProjects = unstable_cache(
 
 export const getProjectBySlug = unstable_cache(
     async (slug: string): Promise<Project | null> => {
-        const supabase = createStaticClient(
-            process.env.NEXT_PUBLIC_SUPABASE_URL!,
-            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        );
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+            throw new Error("Missing Supabase Environment Variables: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY must be set.");
+        }
+
+        const supabase = createStaticClient(supabaseUrl, supabaseAnonKey);
 
         // 1. Fetch Project first (without images relation to be safe)
         const { data: projectData, error: projectError } = await supabase
