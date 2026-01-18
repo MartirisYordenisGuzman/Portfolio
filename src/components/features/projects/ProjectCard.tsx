@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Github, Globe, ArrowRight } from "lucide-react"
+import Image from "next/image"
+import { ArrowRight } from "lucide-react"
 
 import { Project } from "@/types/database"
 import { Badge } from "@/components/ui/badge"
@@ -21,12 +22,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
     return (
         <Card className="flex h-full flex-col overflow-hidden transition-all hover:border-foreground/50 hover:shadow-md">
             {/* Image placeholder or real image would go here */}
-            <div className="aspect-video w-full overflow-hidden bg-muted">
+            <div className="relative aspect-video w-full overflow-hidden bg-muted">
                 {project.cover_image && (
-                    <img
+                    <Image
                         src={project.cover_image}
                         alt={project.title}
-                        className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 )}
             </div>
