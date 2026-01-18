@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MartirisDev | Full Stack Software Engineer",
-  description: "Senior Full Stack Developer specializing in scalable architectures, React, and Supabase. View my case studies and technical articles.",
+  description: "Full Stack Developer specializing in scalable architectures, React, and Supabase. View my case studies and technical articles.",
 };
 
 export default function RootLayout({
