@@ -3,14 +3,18 @@
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, FileText } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import Particles from "@/components/ui/particles"
-import { useLanguage } from "@/providers/language-provider"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function HeroSection() {
-    const { t } = useLanguage()
 
     return (
         <section className="relative container flex flex-col md:flex-row items-center justify-start md:justify-center gap-4 px-4 md:px-6 pb-4 pt-12 md:py-10 lg:py-14 overflow-hidden min-h-[calc(100vh-3.5rem)]">
@@ -49,24 +53,44 @@ export function HeroSection() {
 
             <div className="flex flex-col items-center md:items-start gap-3 text-center md:text-left bg-background/30 backdrop-blur-sm p-4 sm:p-10 rounded-2xl shadow-sm border border-border/10 order-2 md:order-1 w-full md:w-auto max-w-[600px]">
                 <h1 className="text-2xl font-bold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl lg:leading-[1.1]">
-                    {t.hero.title_1} <br className="hidden sm:inline" />
-                    {t.hero.title_2}
+                    Ingeniero de Software <br className="hidden sm:inline" />
+                    Full Stack
                 </h1>
                 <p className="max-w-[750px] text-base text-muted-foreground sm:text-xl">
-                    {t.hero.description}
+                    Especializado en construir aplicaciones web modernas y escalables con React, Next.js y el ecosistema de la nube.
                 </p>
                 <div className="mt-2 flex w-full flex-col gap-3 sm:flex-row sm:items-center justify-center md:justify-start">
                     <Link href="/projects">
                         <Button size="default" className="w-full sm:w-auto md:h-11 md:px-8">
-                            {t.hero.cta_primary}
+                            Ver Proyectos
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                     </Link>
                     <Link href="/contact">
                         <Button variant="outline" size="default" className="w-full sm:w-auto md:h-11 md:px-8">
-                            {t.hero.cta_secondary}
+                            Contáctame
                         </Button>
                     </Link>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="default" className="w-full sm:w-auto md:h-11 md:px-8">
+                                <FileText className="mr-2 h-4 w-4" />
+                                Descargar CV
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="start">
+                            <DropdownMenuItem asChild>
+                                <a href="/cv/cv-es.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
+                                    Versión en Español
+                                </a>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                                <a href="/cv/cv-en.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
+                                    Versión en Inglés
+                                </a>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
             </div>
 

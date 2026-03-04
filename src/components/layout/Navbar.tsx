@@ -15,13 +15,10 @@ import {
     SheetTitle,
 } from "@/components/ui/sheet"
 import { ModeToggle } from "@/components/mode-toggle"
-import { LanguageToggle } from "@/components/language-toggle"
-import { useLanguage } from "@/providers/language-provider"
 
 export function Navbar() {
     const pathname = usePathname()
     const [isOpen, setIsOpen] = React.useState(false)
-    const { t } = useLanguage()
 
     if (pathname.startsWith("/admin") || pathname === "/login") {
         return null
@@ -30,19 +27,19 @@ export function Navbar() {
     const routes = [
         {
             href: "/projects",
-            label: t.nav.projects,
-        },
-        {
-            href: "/blog",
-            label: t.nav.blog,
+            label: "Proyectos",
         },
         {
             href: "/about",
-            label: t.nav.about,
+            label: "Sobre Mí",
+        },
+        {
+            href: "/blog",
+            label: "Blog",
         },
         {
             href: "/contact",
-            label: t.nav.contact,
+            label: "Contacto",
         },
     ]
 
@@ -129,7 +126,6 @@ export function Navbar() {
                     </div>
                     <div className="hidden md:flex items-center gap-2">
                         <ModeToggle />
-                        <LanguageToggle />
                     </div>
 
                     {/* Mobile Menu Trigger (moved to right) */}
@@ -206,7 +202,6 @@ export function Navbar() {
                                         </div>
                                         <div className="flex items-center gap-4">
                                             <ModeToggle />
-                                            <LanguageToggle />
                                         </div>
                                     </div>
                                 </div>

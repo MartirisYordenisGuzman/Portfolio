@@ -3,15 +3,12 @@
 import { useState } from "react"
 import { Mail, Phone, Instagram, Facebook, Linkedin } from "lucide-react"
 import { toast } from "sonner"
-import { useLanguage } from "@/providers/language-provider"
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 
 export default function ContactPage() {
-    const { t } = useLanguage()
     // const { toast } = useToast()
     const [isLoading, setIsLoading] = useState(false)
     const [formData, setFormData] = useState({
@@ -37,14 +34,14 @@ export default function ContactPage() {
                 throw new Error(data.error || "Algo salió mal")
             }
 
-            toast.success(t.contact.success_title, {
-                description: t.contact.success_desc,
+            toast.success("Mensaje enviado", {
+                description: "Gracias por contactarme. Te responderé pronto.",
             })
 
             setFormData({ name: "", email: "", message: "" })
-        } catch (_error) {
-            toast.error(t.contact.error_title, {
-                description: t.contact.error_desc, // In real app use specific error msg if safe
+        } catch {
+            toast.error("Error", {
+                description: "Algo salió mal. Por favor intenta de nuevo.", // In real app use specific error msg if safe
             })
         } finally {
             setIsLoading(false)
@@ -57,9 +54,9 @@ export default function ContactPage() {
                 {/* Left Column: Contact Info */}
                 <div className="space-y-8">
                     <div className="space-y-2">
-                        <h1 className="text-4xl font-bold tracking-tight">{t.contact.title}</h1>
+                        <h1 className="text-4xl font-bold tracking-tight">Hablemos</h1>
                         <p className="text-muted-foreground">
-                            {t.contact.description}
+                            ¿Tienes un proyecto en mente? Estoy listo para ayudarte a construir soluciones escalables.
                         </p>
                     </div>
 
@@ -105,10 +102,10 @@ export default function ContactPage() {
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid gap-6 md:grid-cols-2">
                             <div className="space-y-2">
-                                <Label htmlFor="name">{t.contact.label_name}</Label>
+                                <Label htmlFor="name">Nombre</Label>
                                 <Input
                                     id="name"
-                                    placeholder={t.contact.placeholder_name}
+                                    placeholder="Tu nombre completo"
                                     className="bg-muted/50 border-0 focus-visible:ring-1 focus-visible:ring-ring"
                                     required
                                     value={formData.name}
@@ -116,11 +113,11 @@ export default function ContactPage() {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="email">{t.contact.label_email}</Label>
+                                <Label htmlFor="email">Email</Label>
                                 <Input
                                     id="email"
                                     type="email"
-                                    placeholder={t.contact.placeholder_email}
+                                    placeholder="tu@email.com"
                                     className="bg-muted/50 border-0 focus-visible:ring-1 focus-visible:ring-ring"
                                     required
                                     value={formData.email}
@@ -130,10 +127,10 @@ export default function ContactPage() {
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="message">{t.contact.label_message}</Label>
+                            <Label htmlFor="message">Mensaje</Label>
                             <Textarea
                                 id="message"
-                                placeholder={t.contact.placeholder_message}
+                                placeholder="Escribe algo..."
                                 className="min-h-[150px] bg-muted/50 border-0 focus-visible:ring-1 focus-visible:ring-ring resize-none"
                                 required
                                 value={formData.message}
@@ -142,7 +139,7 @@ export default function ContactPage() {
                         </div>
 
                         <Button type="submit" className="w-full h-12 text-base" disabled={isLoading}>
-                            {isLoading ? t.contact.btn_sending : t.contact.btn_submit}
+                            {isLoading ? "Enviando..." : "Enviar Mensaje"}
                         </Button>
 
                     </form>

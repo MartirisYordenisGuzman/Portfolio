@@ -2,7 +2,6 @@
 
 import { Project } from "@/types/database"
 import { ProjectCard } from "@/components/features/projects/ProjectCard"
-import { useLanguage } from "@/providers/language-provider"
 import { ScrollAnimation } from "@/components/ui/scroll-animation"
 
 interface ProjectsViewProps {
@@ -10,24 +9,26 @@ interface ProjectsViewProps {
 }
 
 export function ProjectsView({ projects }: ProjectsViewProps) {
-    const { t } = useLanguage()
 
     return (
-        <div className="mx-auto w-full max-w-[85vw] py-8 md:py-10">
-            <div className="flex flex-col items-start gap-4 pb-8 text-left">
-                <div className="space-y-2">
-                    <h1 className="text-3xl font-bold tracking-tight">
-                        {t.projects.title}
-                    </h1>
-                    <p className="text-muted-foreground">
-                        {t.projects.description}
+        <div className="mx-auto w-full max-w-6xl py-8 md:py-10">
+            <div className="flex flex-col items-start gap-4 pb-10 text-left">
+                <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                        <span className="text-2xl font-mono text-primary/80 font-bold">&lt;/&gt;</span>
+                        <h1 className="text-3xl font-bold tracking-tight">
+                            Proyectos
+                        </h1>
+                    </div>
+                    <p className="text-muted-foreground text-base">
+                        Una selección de soluciones técnicas y arquitecturas que he diseñado.
                     </p>
                 </div>
             </div>
             {projects.length > 0 ? (
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div className="flex flex-col gap-12 md:gap-20">
                     {projects.map((project) => (
-                        <ScrollAnimation key={project.id} className="h-full">
+                        <ScrollAnimation key={project.id} className="w-full">
                             <ProjectCard project={project} />
                         </ScrollAnimation>
                     ))}
