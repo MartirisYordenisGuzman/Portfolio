@@ -2,7 +2,7 @@
 
 Bienvenido a mi portafolio personal. Este es un espacio donde comparto mi trayectoria como Ingeniero de Software, mis proyectos más destacados y mis conocimientos técnicos. El sitio está diseñado con un enfoque en la modernidad, la velocidad y la experiencia de usuario premium.
 
-![Portada del Portafolio](C:\Users\marti\.gemini\antigravity\brain\4ec9e223-4733-4b78-846c-40fc92dc2655\hero_home_page_1772640073651.png)
+![Portada del Portafolio](./public/screenshots/hero.png)
 
 ## 🚀 Características y Funcionalidades
 
@@ -45,13 +45,13 @@ src/
 ## 📸 Galería del Proyecto
 
 ### Proyectos Destacados
-![Sección de Proyectos](C:\Users\marti\.gemini\antigravity\brain\4ec9e223-4733-4b78-846c-40fc92dc2655\projects_page_1772640081197.png)
+![Sección de Proyectos](./public/screenshots/projects.png)
 
 ### Sobre Mí y Arsenal Técnico
-![Sección Sobre Mí](C:\Users\marti\.gemini\antigravity\brain\4ec9e223-4733-4b78-846c-40fc92dc2655\about_cv_dropdown_1772640171132.png)
+![Sección Sobre Mí](./public/screenshots/about.png)
 
 ### Contacto
-![Sección de Contacto](C:\Users\marti\.gemini\antigravity\brain\4ec9e223-4733-4b78-846c-40fc92dc2655\contact_page_1772640178689.png)
+![Sección de Contacto](./public/screenshots/contact.png)
 
 ## 🛠️ Instalación Local
 
