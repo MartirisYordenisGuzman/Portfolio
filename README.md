@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MartirisDev - Portafolio Profesional
 
-## Getting Started
+Bienvenido a mi portafolio personal. Este es un espacio donde comparto mi trayectoria como Ingeniero de Software, mis proyectos más destacados y mis conocimientos técnicos. El sitio está diseñado con un enfoque en la modernidad, la velocidad y la experiencia de usuario premium.
 
-First, run the development server:
+![Portada del Portafolio](C:\Users\marti\.gemini\antigravity\brain\4ec9e223-4733-4b78-846c-40fc92dc2655\hero_home_page_1772640073651.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Características y Funcionalidades
+
+- **Diseño Moderno y Adaptativo:** Una interfaz limpia y profesional que se ajusta perfectamente a dispositivos móviles y de escritorio.
+- **Sección de Proyectos Rediseñada:** Visualización horizontal de proyectos con un enfoque visual impactante, incluyendo detalles técnicos y enlaces directos a código y demostraciones.
+- **Descarga de CV Bilingüe:** Menú desplegable integrado tanto en la página de inicio como en "Sobre Mí" para descargar mi CV en español o inglés.
+- **Filtro de Proyectos y Contenido:** Organización eficiente de proyectos mediante etiquetas y categorías.
+- **Optimización de Traducción:** El sitio utiliza español estático como base para garantizar la mejor compatibilidad con los traductores automáticos de los navegadores modernos.
+- **Modo Oscuro/Claro:** Soporte completo para temas visuales que se adaptan a la preferencia del usuario.
+
+## 🛠️ Tecnologías y Arquitectura
+
+Este proyecto fue construido utilizando herramientas de vanguardia para garantizar escalabilidad y rendimiento:
+
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router, Server Components y Turbopack).
+- **Lenguaje:** [TypeScript](https://www.typescriptlang.org/) para un desarrollo robusto y seguro.
+- **Estilos:** [Tailwind CSS](https://tailwindcss.com/) para un diseño ágil y altamente personalizable.
+- **Componentes UI:** [Shadcn UI](https://ui.shadcn.com/) sobre Radix Primitives.
+- **Animaciones:** [Framer Motion](https://www.framer.com/motion/) para micro-interacciones suaves.
+- **Backend:** [Supabase](https://supabase.com/) como base de datos y gestión de contenido.
+- **Seguridad:** Actualización constante de dependencias (como `next-mdx-remote`) para mitigar vulnerabilidades.
+
+### Por qué esta Stack?
+Elegí **Next.js** por su excelente manejo del SEO gracias al Server-Side Rendering (SSR) y su velocidad de carga. **Tailwind CSS** permite una consistencia visual sin sacrificar el rendimiento, mientras que **Supabase** ofrece una infraestructura backend flexible que me permite centrarme en el frontend.
+
+## 📁 Estructura del Proyecto
+
+```text
+src/
+├── app/            # Rutas de Next.js (App Router)
+├── components/     # Componentes de UI y lógica reutilizable
+│   ├── ui/         # Componentes base (shadcn)
+│   ├── layout/     # Componentes globales (Navbar, Footer)
+│   └── features/   # Componentes específicos por funcionalidad
+├── lib/            # Utilidades y configuración de clientes (Supabase)
+├── types/          # Definiciones de TypeScript para la base de datos
+└── public/         # Recursos estáticos (Imágenes, PDFs, CVs)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📸 Galería del Proyecto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Proyectos Destacados
+![Sección de Proyectos](C:\Users\marti\.gemini\antigravity\brain\4ec9e223-4733-4b78-846c-40fc92dc2655\projects_page_1772640081197.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Sobre Mí y Arsenal Técnico
+![Sección Sobre Mí](C:\Users\marti\.gemini\antigravity\brain\4ec9e223-4733-4b78-846c-40fc92dc2655\about_cv_dropdown_1772640171132.png)
 
-## Learn More
+### Contacto
+![Sección de Contacto](C:\Users\marti\.gemini\antigravity\brain\4ec9e223-4733-4b78-846c-40fc92dc2655\contact_page_1772640178689.png)
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Instalación Local
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/MartirisYordenisGuzman/Portfolio.git
+   ```
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+3. Ejecuta el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Construido con ❤️ por [Martiris Guzman](https://www.linkedin.com/in/martiris-yordenis-guzmán)
