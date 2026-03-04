@@ -11,7 +11,7 @@ interface ProjectsViewProps {
 export function ProjectsView({ projects }: ProjectsViewProps) {
 
     return (
-        <div className="mx-auto w-full max-w-6xl py-8 md:py-10">
+        <div className="mx-auto w-full max-w-6xl px-4 md:px-0 py-8 md:py-10">
             <div className="flex flex-col items-start gap-4 pb-10 text-left">
                 <div className="space-y-3">
                     <div className="flex items-center gap-3">
