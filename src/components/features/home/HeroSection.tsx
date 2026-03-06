@@ -118,19 +118,6 @@ export function HeroSection() {
                                 variant="ghost"
                                 size="default"
                                 className="w-full sm:w-auto md:h-11 md:px-8"
-                                // Prevent accidental triggers on mobile touch-start/scroll
-                                onPointerDown={(e) => {
-                                    if (window.matchMedia("(max-width: 768px)").matches) {
-                                        // On mobile, we only want explicit clicks
-                                        e.preventDefault();
-                                    }
-                                }}
-                                onClick={(e) => {
-                                    // Radix trigger might need manual toggle if we preventDefault on pointerdown
-                                    if (window.matchMedia("(max-width: 768px)").matches) {
-                                        e.currentTarget.click();
-                                    }
-                                }}
                             >
                                 <FileText className="mr-2 h-4 w-4" />
                                 Descargar CV
