@@ -45,24 +45,23 @@ export function LayoutModeProvider({ children }: { children: React.ReactNode }) 
             if (pathname === "/") {
                 let target = activeSection
 
-                // If we are at the top (hero), stay on the homepage regardless of hash
-                if (target === "hero") {
-                    setIsSpaMode(false)
-                    return
-                }
-
-                if (!target) {
-                    target = window.location.hash.replace("#", "")
+                // Prioritize hash if target is not explicitly passed (or is 'hero')
+                if (!target || target === "hero") {
+                    const hash = window.location.hash.replace("#", "")
+                    if (hash) target = hash
                 }
 
                 if (target && ["about", "projects", "blog", "contact"].includes(target)) {
+                    // Immediately push the new route
                     router.push(`/${target}`)
-                    // Delay setting state so SPA content doesn't vanish before the next page renders
-                    setTimeout(() => setIsSpaMode(false), 200)
+                    // Set state with a slight delay to keep SPA layout until route changes
+                    setTimeout(() => setIsSpaMode(false), 50)
                 } else {
+                    // Stay on homepage if hero or unknown
                     setIsSpaMode(false)
                 }
             } else {
+                // Not on home, just flip the mode
                 setIsSpaMode(false)
             }
         }
