@@ -245,22 +245,6 @@ export function Navbar() {
                                             </Link>
                                         </div>
                                         <div className="flex items-center gap-4">
-                                            <button
-                                                onClick={() => {
-                                                    toggleLayoutMode();
-                                                    setIsOpen(false);
-                                                }}
-                                                className={cn(
-                                                    "relative rounded-full bg-secondary p-3 transition-colors hover:bg-primary hover:text-primary-foreground",
-                                                    shouldAnimate && "animate-[sync-pulse-shadow_1.5s_ease-out_3]"
-                                                )}
-                                            >
-                                                <Layers className={cn(
-                                                    "h-5 w-5 relative z-10",
-                                                    shouldAnimate && "animate-[sync-pulse-icon_1.5s_ease-out_3]"
-                                                )} />
-                                                <span className="sr-only">Modo SPA</span>
-                                            </button>
                                             <ModeToggle />
                                         </div>
                                     </div>
