@@ -113,11 +113,12 @@ export function HeroSection() {
                         </Button>
                     </Link>
                     <DropdownMenu>
-                        <DropdownMenuTrigger asChild onPointerDown={(e) => e.preventDefault()}>
+                        <DropdownMenuTrigger asChild>
                             <Button
                                 variant="ghost"
                                 size="default"
                                 className="w-full sm:w-auto md:h-11 md:px-8 touch-manipulation"
+                                onPointerDown={(e) => e.stopPropagation()}
                             >
                                 <FileText className="mr-2 h-4 w-4" />
                                 Descargar CV

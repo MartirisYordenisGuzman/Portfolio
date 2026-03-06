@@ -143,8 +143,12 @@ export default function AboutPage() {
                                         </Button>
                                     </Link>
                                     <DropdownMenu>
-                                        <DropdownMenuTrigger asChild onPointerDown={(e) => e.preventDefault()}>
-                                            <Button variant="ghost" className="touch-manipulation">
+                                        <DropdownMenuTrigger asChild>
+                                            <Button
+                                                variant="ghost"
+                                                className="touch-manipulation"
+                                                onPointerDown={(e) => e.stopPropagation()}
+                                            >
                                                 <FileText className="mr-2 h-4 w-4" />
                                                 Descargar CV
                                             </Button>
