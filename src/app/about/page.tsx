@@ -137,7 +137,7 @@ export default function AboutPage() {
                                         </Button>
                                     </Link>
                                     <a
-                                        href="/cv/Martiris Guzman Resume JS-TS.pdf"
+                                        href="/cv/cv-en.pdf"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
