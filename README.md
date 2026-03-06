@@ -56,7 +56,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_anonima
 ```
 
 ### 2. Configuración de la Base de Datos
-Debes ejecutar el script SQL localizado en la raíz: `supabase_schema.sql`. Este script se encarga de:
+Debes ejecutar los scripts SQL localizados en `supabase/migrations/`. Especialmente `supabase_schema.sql`. Estos scripts se encargan de:
 - Habilitar las extensiones necesarias (`pgcrypto`).
 - Crear las tablas (`projects`, `posts`, `tags`, `contacts`, etc.).
 - Configurar las políticas de **Row Level Security (RLS)** para que el contenido solo sea editable por usuarios autenticados (Admin), pero legible por el público.
@@ -71,13 +71,18 @@ El panel detecta automáticamente si hay una sesión activa. Asegúrate de crear
 ```text
 src/
 ├── app/            # Rutas de Next.js (App Router)
-├── components/     # Componentes de UI y lógica reutilizable
+├── components/     # Componentes de UI y lógica de presentación
 │   ├── ui/         # Componentes base (shadcn)
 │   ├── layout/     # Componentes globales (Navbar, Footer)
-│   └── features/   # Componentes específicos por funcionalidad (Admin, Projects, Blog)
-├── lib/            # Utilidades y configuración de clientes (Supabase)
+│   └── features/   # Componentes específicos por funcionalidad
+├── providers/      # Contextos y proveedores globales (Tema, LayoutMode)
+├── lib/            # Utilidades, API clientes y configuración
+│   └── data/       # Datos estáticos y mocks
 ├── types/          # Definiciones de TypeScript para la base de datos
+├── middleware.ts   # Middleware de Next.js para Auth/Sesiones
 └── public/         # Recursos estáticos (Imágenes, Screenshots, CVs)
+supabase/
+└── migrations/     # Scripts SQL para configuración de base de datos
 ```
 
 ## 📸 Galería del Proyecto
