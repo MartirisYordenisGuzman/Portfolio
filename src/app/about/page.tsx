@@ -11,7 +11,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useLayoutMode } from "@/components/providers/layout-mode-provider"
+import { useLayoutMode } from "@/providers/layout-mode-provider"
 
 const stack = [
     {

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 
-import { useLayoutMode } from "@/components/providers/layout-mode-provider"
+import { useLayoutMode } from "@/providers/layout-mode-provider"
 
 interface SmartBackLinkProps {
     spaHref: string
