@@ -8,12 +8,7 @@ import { ArrowRight, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Particles from "@/components/ui/particles"
 import { useLayoutMode } from "@/providers/layout-mode-provider"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { useLayoutMode } from "@/providers/layout-mode-provider"
 
 export function HeroSection() {
     const { isSpaMode } = useLayoutMode()
@@ -112,31 +107,21 @@ export function HeroSection() {
                             Contáctame
                         </Button>
                     </Link>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button
-                                variant="ghost"
-                                size="default"
-                                className="w-full sm:w-auto md:h-11 md:px-8 touch-manipulation"
-                                onPointerDown={(e) => e.stopPropagation()}
-                            >
-                                <FileText className="mr-2 h-4 w-4" />
-                                Descargar CV
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start">
-                            <DropdownMenuItem asChild>
-                                <a href="/cv/cv-es.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
-                                    Versión en Español
-                                </a>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <a href="/cv/cv-en.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
-                                    Versión en Inglés
-                                </a>
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    <a
+                        href="/cv/Martiris Guzman Resume JS-TS.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:w-auto"
+                    >
+                        <Button
+                            variant="ghost"
+                            size="default"
+                            className="w-full sm:w-auto md:h-11 md:px-8"
+                        >
+                            <FileText className="mr-2 h-4 w-4" />
+                            Descargar CV
+                        </Button>
+                    </a>
                 </div>
             </div>
 

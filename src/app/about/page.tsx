@@ -5,12 +5,6 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { FileText, Github, Linkedin, Mail } from "lucide-react"
 import { ScrollAnimation } from "@/components/ui/scroll-animation"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { useLayoutMode } from "@/providers/layout-mode-provider"
 
 const stack = [
@@ -142,30 +136,16 @@ export default function AboutPage() {
                                             LinkedIn
                                         </Button>
                                     </Link>
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button
-                                                variant="ghost"
-                                                className="touch-manipulation"
-                                                onPointerDown={(e) => e.stopPropagation()}
-                                            >
-                                                <FileText className="mr-2 h-4 w-4" />
-                                                Descargar CV
-                                            </Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem asChild>
-                                                <a href="/cv/cv-es.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
-                                                    Versión en Español
-                                                </a>
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem asChild>
-                                                <a href="/cv/cv-en.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
-                                                    Versión en Inglés
-                                                </a>
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                                    <a
+                                        href="/cv/Martiris Guzman Resume JS-TS.pdf"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <Button variant="ghost">
+                                            <FileText className="mr-2 h-4 w-4" />
+                                            Descargar CV
+                                        </Button>
+                                    </a>
                                 </div>
                             </section>
                         </ScrollAnimation>
