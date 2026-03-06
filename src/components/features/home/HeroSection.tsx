@@ -117,7 +117,7 @@ export function HeroSection() {
                             <Button
                                 variant="ghost"
                                 size="default"
-                                className="w-full sm:w-auto md:h-11 md:px-8"
+                                className="w-full sm:w-auto md:h-11 md:px-8 touch-manipulation"
                             >
                                 <FileText className="mr-2 h-4 w-4" />
                                 Descargar CV

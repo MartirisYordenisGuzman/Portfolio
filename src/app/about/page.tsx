@@ -144,7 +144,7 @@ export default function AboutPage() {
                                     </Link>
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost">
+                                            <Button variant="ghost" className="touch-manipulation">
                                                 <FileText className="mr-2 h-4 w-4" />
                                                 Descargar CV
                                             </Button>

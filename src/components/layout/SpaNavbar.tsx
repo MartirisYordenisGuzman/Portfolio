@@ -97,8 +97,9 @@ export function SpaNavbar() {
                 })
             },
             {
-                rootMargin: "-20% 0px -20% 0px",
-                threshold: [0, 0.1, 0.5]
+                // Narrow margin to capture sections when they are at the top-middle of the screen
+                rootMargin: "-30% 0px -60% 0px",
+                threshold: [0, 0.1]
             }
         )
 
@@ -110,7 +111,21 @@ export function SpaNavbar() {
             }
         })
 
-        return () => observer.disconnect()
+        // Force "Contacto" active when at the very bottom of the page
+        const handleScroll = () => {
+            const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50
+            if (isAtBottom) {
+                setActiveSection("contact")
+            } else if (window.scrollY < 100) {
+                setActiveSection("hero")
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll)
+        return () => {
+            observer.disconnect()
+            window.removeEventListener("scroll", handleScroll)
+        }
     }, [pathname])
 
     return (
