@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, Terminal, Github, Linkedin } from "lucide-react"
+import { Menu, Terminal, Github, Linkedin, Layers } from "lucide-react"
 import { motion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
@@ -17,7 +17,6 @@ import {
 import { ModeToggle } from "@/components/mode-toggle"
 import { useLayoutMode } from "@/components/providers/layout-mode-provider"
 import { SpaNavbar } from "@/components/layout/SpaNavbar"
-import { Monitor } from "lucide-react"
 
 export function Navbar() {
     const pathname = usePathname()
@@ -147,7 +146,7 @@ export function Navbar() {
                                 shouldAnimate && "animate-[sync-pulse-shadow_1.5s_ease-out_3]"
                             )}
                         >
-                            <Monitor className={cn(
+                            <Layers className={cn(
                                 "h-4 w-4 relative z-10",
                                 shouldAnimate && "animate-[sync-pulse-icon_1.5s_ease-out_3]"
                             )} />
@@ -239,7 +238,7 @@ export function Navbar() {
                                                     shouldAnimate && "animate-[sync-pulse-shadow_1.5s_ease-out_3]"
                                                 )}
                                             >
-                                                <Monitor className={cn(
+                                                <Layers className={cn(
                                                     "h-5 w-5 relative z-10",
                                                     shouldAnimate && "animate-[sync-pulse-icon_1.5s_ease-out_3]"
                                                 )} />

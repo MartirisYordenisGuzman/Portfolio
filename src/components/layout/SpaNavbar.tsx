@@ -86,6 +86,8 @@ export function SpaNavbar() {
     })
 
     React.useEffect(() => {
+        if (pathname !== "/") return;
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -94,7 +96,10 @@ export function SpaNavbar() {
                     }
                 })
             },
-            { rootMargin: "-40% 0px -40% 0px" } // Adjust this margin to trigger earlier/later when scrolling
+            {
+                rootMargin: "-20% 0px -20% 0px",
+                threshold: [0, 0.1, 0.5]
+            }
         )
 
         spaRoutes.forEach((route) => {
@@ -105,16 +110,8 @@ export function SpaNavbar() {
             }
         })
 
-        return () => {
-            spaRoutes.forEach((route) => {
-                const id = route.href.replace("/#", "").replace("#", "")
-                const element = document.getElementById(id)
-                if (element) {
-                    observer.unobserve(element)
-                }
-            })
-        }
-    }, [])
+        return () => observer.disconnect()
+    }, [pathname])
 
     return (
         <motion.div
