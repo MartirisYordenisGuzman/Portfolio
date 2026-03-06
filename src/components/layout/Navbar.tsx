@@ -15,7 +15,7 @@ import {
     SheetTitle,
 } from "@/components/ui/sheet"
 import { ModeToggle } from "@/components/mode-toggle"
-import { useLayoutMode } from "@/components/providers/layout-mode-provider"
+import { useLayoutMode } from "@/providers/layout-mode-provider"
 import { SpaNavbar } from "@/components/layout/SpaNavbar"
 
 export function Navbar() {

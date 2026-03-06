@@ -6,7 +6,7 @@ import { Layers } from "lucide-react"
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 
 import { cn } from "@/lib/utils"
-import { useLayoutMode } from "@/components/providers/layout-mode-provider"
+import { useLayoutMode } from "@/providers/layout-mode-provider"
 import { ModeToggle } from "@/components/mode-toggle"
 import { usePathname } from "next/navigation"
 

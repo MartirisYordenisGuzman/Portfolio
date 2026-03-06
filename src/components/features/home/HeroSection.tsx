@@ -7,7 +7,7 @@ import { ArrowRight, FileText } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import Particles from "@/components/ui/particles"
-import { useLayoutMode } from "@/components/providers/layout-mode-provider"
+import { useLayoutMode } from "@/providers/layout-mode-provider"
 import {
     DropdownMenu,
     DropdownMenuContent,

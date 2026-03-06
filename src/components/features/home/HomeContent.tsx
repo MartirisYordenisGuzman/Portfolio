@@ -1,6 +1,6 @@
 "use client"
 
-import { useLayoutMode } from "@/components/providers/layout-mode-provider"
+import { useLayoutMode } from "@/providers/layout-mode-provider"
 import { HeroSection } from "@/components/features/home/HeroSection"
 import AboutPage from "@/app/about/page"
 import { ProjectsView } from "@/components/features/projects/ProjectsView"
