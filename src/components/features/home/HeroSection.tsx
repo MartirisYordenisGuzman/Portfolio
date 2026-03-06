@@ -113,7 +113,7 @@ export function HeroSection() {
                         </Button>
                     </Link>
                     <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
+                        <DropdownMenuTrigger asChild onPointerDown={(e) => e.preventDefault()}>
                             <Button
                                 variant="ghost"
                                 size="default"
