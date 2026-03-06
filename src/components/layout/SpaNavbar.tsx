@@ -142,8 +142,7 @@ export function SpaNavbar() {
             <nav className="flex items-center rounded-full border border-border/40 bg-background/80 p-1 md:p-2 backdrop-blur-md shadow-lg pointer-events-auto max-w-full md:max-w-fit">
 
                 <div
-                    className="flex items-center gap-1 md:gap-2 overflow-x-auto hide-scrollbar px-2"
-                    style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
+                    className="flex items-center gap-1 md:gap-2 px-1"
                 >
                     {spaRoutes.map((route) => {
                         const routeId = route.href.replace("/#", "").replace("#", "")
@@ -154,7 +153,7 @@ export function SpaNavbar() {
                                 href={route.href}
                                 onClick={(e) => handleNavClick(e, route.href)}
                                 className={cn(
-                                    "relative px-3 md:px-4 py-1.5 text-xs md:text-sm font-medium transition-colors rounded-full whitespace-nowrap",
+                                    "relative px-2.5 md:px-4 py-1.5 text-xs md:text-sm font-medium transition-colors rounded-full whitespace-nowrap",
                                     isActive ? "text-primary-foreground" : "text-foreground/70 hover:text-foreground hover:bg-muted/50",
                                     route.hideOnMobile && "hidden md:inline-flex"
                                 )}
