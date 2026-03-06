@@ -52,7 +52,7 @@ export function HeroSection() {
     }
 
     return (
-        <section className={`relative container flex flex-col md:flex-row items-center justify-start md:justify-center gap-8 md:gap-4 px-4 md:px-6 pb-12 md:pb-10 lg:pb-14 overflow-hidden min-h-[100dvh] ${isSpaMode ? 'pt-28 md:pt-20 lg:pt-24' : 'pt-16 md:pt-20'}`}>
+        <section className={`relative container flex flex-col md:flex-row items-center justify-start md:justify-center gap-8 md:gap-4 px-4 md:px-6 pb-12 md:pb-10 lg:pb-14 overflow-hidden min-h-screen ${isSpaMode ? 'pt-28 md:pt-20 lg:pt-24' : 'pt-16 md:pt-20'}`}>
             {/* Particles Background */}
             <div className="absolute inset-0 -z-10">
                 <Particles

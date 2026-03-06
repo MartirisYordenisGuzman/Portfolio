@@ -44,7 +44,14 @@ export function LayoutModeProvider({ children }: { children: React.ReactNode }) 
             // Switching to Multi-page
             if (pathname === "/") {
                 let target = activeSection
-                if (!target || target === "hero") {
+
+                // If we are at the top (hero), stay on the homepage regardless of hash
+                if (target === "hero") {
+                    setIsSpaMode(false)
+                    return
+                }
+
+                if (!target) {
                     target = window.location.hash.replace("#", "")
                 }
 
