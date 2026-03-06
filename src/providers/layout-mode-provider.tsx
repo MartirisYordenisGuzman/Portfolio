@@ -45,8 +45,14 @@ export function LayoutModeProvider({ children }: { children: React.ReactNode }) 
             if (pathname === "/") {
                 let target = activeSection
 
-                // Prioritize hash if target is not explicitly passed (or is 'hero')
-                if (!target || target === "hero") {
+                // If we are at the hero/top, explicitly ignore hash and stay on "/"
+                if (target === "hero") {
+                    setIsSpaMode(false)
+                    return
+                }
+
+                // Fallback to hash only if target is not defined
+                if (!target) {
                     const hash = window.location.hash.replace("#", "")
                     if (hash) target = hash
                 }
