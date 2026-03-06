@@ -56,10 +56,10 @@ export function ImageUpload({
 
             onChange(publicUrl)
             toast.success("Imagen subida correctamente")
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error(error)
             toast.error("Error al subir la imagen", {
-                description: error.message
+                description: error instanceof Error ? error.message : "Error desconocido"
             })
         } finally {
             setIsUploading(false)

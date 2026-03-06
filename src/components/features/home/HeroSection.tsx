@@ -7,6 +7,7 @@ import { ArrowRight, FileText } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import Particles from "@/components/ui/particles"
+import { useLayoutMode } from "@/components/providers/layout-mode-provider"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -15,9 +16,43 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function HeroSection() {
+    const { isSpaMode } = useLayoutMode()
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (!isSpaMode) return;
+
+        e.preventDefault()
+        const targetId = href.replace("#", "")
+        const element = document.getElementById(targetId)
+        if (element) {
+            const targetPosition = element.getBoundingClientRect().top + window.scrollY - 100
+            const startPosition = window.scrollY
+            const distance = targetPosition - startPosition
+            let start: number | null = null
+
+            const duration = window.matchMedia("(max-width: 768px)").matches ? 400 : 600
+
+            const step = (timestamp: number) => {
+                if (!start) start = timestamp
+                const progress = timestamp - start
+                const ease = progress < duration / 2
+                    ? 4 * Math.pow(progress / duration, 3)
+                    : 1 - Math.pow(-2 * (progress / duration) + 2, 3) / 2
+
+                if (progress < duration) {
+                    window.scrollTo(0, startPosition + distance * ease)
+                    window.requestAnimationFrame(step)
+                } else {
+                    window.scrollTo(0, targetPosition)
+                    window.history.pushState(null, "", href)
+                }
+            }
+            window.requestAnimationFrame(step)
+        }
+    }
 
     return (
-        <section className="relative container flex flex-col md:flex-row items-center justify-start md:justify-center gap-4 px-4 md:px-6 pb-4 pt-12 md:py-10 lg:py-14 overflow-hidden min-h-[calc(100vh-3.5rem)]">
+        <section className={`relative container flex flex-col md:flex-row items-center justify-start md:justify-center gap-8 md:gap-4 px-4 md:px-6 pb-8 md:pb-10 lg:pb-14 overflow-hidden min-h-[calc(100vh-3.5rem)] ${isSpaMode ? 'pt-20 md:pt-20 lg:pt-24' : 'pt-12 md:pt-20'}`}>
             {/* Particles Background */}
             <div className="absolute inset-0 -z-10">
                 <Particles
@@ -60,13 +95,19 @@ export function HeroSection() {
                     Especializado en construir aplicaciones web modernas y escalables con React, Next.js y el ecosistema de la nube.
                 </p>
                 <div className="mt-2 flex w-full flex-col gap-3 sm:flex-row sm:items-center justify-center md:justify-start">
-                    <Link href="/projects">
+                    <Link
+                        href={isSpaMode ? "#projects" : "/projects"}
+                        onClick={(e) => isSpaMode && handleNavClick(e, "#projects")}
+                    >
                         <Button size="default" className="w-full sm:w-auto md:h-11 md:px-8">
                             Ver Proyectos
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                     </Link>
-                    <Link href="/contact">
+                    <Link
+                        href={isSpaMode ? "#contact" : "/contact"}
+                        onClick={(e) => isSpaMode && handleNavClick(e, "#contact")}
+                    >
                         <Button variant="outline" size="default" className="w-full sm:w-auto md:h-11 md:px-8">
                             Contáctame
                         </Button>

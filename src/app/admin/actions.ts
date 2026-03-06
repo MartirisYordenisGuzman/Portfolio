@@ -1,11 +1,12 @@
 "use server"
 
 import { createClient } from "@/lib/supabase/server"
+import { SupabaseClient } from "@supabase/supabase-js"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 // Helper to manage tags
-async function manageTags(supabase: any, type: 'project' | 'post', id: string, tagsJson: string) {
+async function manageTags(supabase: SupabaseClient, type: 'project' | 'post', id: string, tagsJson: string) {
     if (!tagsJson) return;
 
     let tagIds: string[] = []
@@ -32,7 +33,7 @@ async function manageTags(supabase: any, type: 'project' | 'post', id: string, t
 }
 
 // Helper to manage project images
-async function manageProjectImages(supabase: any, projectId: string, imagesJson: string) {
+async function manageProjectImages(supabase: SupabaseClient, projectId: string, imagesJson: string) {
     if (!imagesJson) return;
 
     let imageUrls: string[] = []
@@ -84,7 +85,7 @@ export async function createProject(formData: FormData) {
         cover_image: cover_image || null,
         status,
         published_at,
-    } as any).select().single()
+    }).select().single()
 
     if (error) {
         return { error: error.message }
@@ -114,7 +115,7 @@ export async function updateProject(id: string, formData: FormData) {
     const tagsJson = formData.get("tags") as string
     const galleryImagesJson = formData.get("gallery_images") as string
 
-    const updateData: Record<string, any> = {
+    const updateData: Record<string, string | null> = {
         title,
         slug,
         short_description,
@@ -181,7 +182,7 @@ export async function createPost(formData: FormData) {
         reading_time_minutes: reading_time ? parseInt(reading_time.toString()) : null,
         status,
         published_at,
-    } as any).select().single()
+    }).select().single()
 
     if (error) {
         return { error: error.message }
@@ -208,7 +209,7 @@ export async function updatePost(id: string, formData: FormData) {
     const status = formData.get("status") as string
     const tagsJson = formData.get("tags") as string
 
-    const updateData: Record<string, any> = {
+    const updateData: Record<string, string | number | null> = {
         title,
         slug,
         excerpt,

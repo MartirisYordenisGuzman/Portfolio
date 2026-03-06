@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation"
-import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Calendar, Clock } from "lucide-react"
+import { Clock } from "lucide-react"
 import { MDXRemote } from "next-mdx-remote/rsc"
 
 import { getPostBySlug, getPosts } from "@/lib/api/posts"
 import { Badge } from "@/components/ui/badge"
+import { SmartBackLink } from "@/components/ui/smart-back-link"
 
 interface BlogPostPageProps {
     params: Promise<{
@@ -35,13 +35,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
                 {/* Back Link */}
                 <div className="mb-6 md:mb-10">
-                    <Link
-                        href="/blog"
-                        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        Volver al Blog
-                    </Link>
+                    <SmartBackLink
+                        spaHref="/#blog"
+                        multiHref="/blog"
+                        label="Volver al Blog"
+                    />
                 </div>
 
                 {/* Article Header */}

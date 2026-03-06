@@ -12,12 +12,13 @@ import { toast } from "sonner"
 import { ImageUpload } from "@/components/ui/image-upload"
 import { Badge } from "@/components/ui/badge"
 import { Check, X } from "lucide-react"
+import { Project, Tag } from "@/types/database"
 import { cn } from "@/lib/utils"
 
 interface ProjectFormProps {
-    project?: any
+    project?: Project
     isEditing?: boolean
-    allTags?: any[]
+    allTags?: Tag[]
 }
 
 export function ProjectForm({ project, isEditing = false, allTags = [] }: ProjectFormProps) {
@@ -27,7 +28,7 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
     // Tags state: array of tag IDs
     // Tags state: array of tag IDs
     const [selectedTags, setSelectedTags] = useState<string[]>(
-        project?.tags?.map((t: any) => t.id) || []
+        project?.tags?.map((t: Tag) => t.id) || []
     )
 
     const toggleTag = (tagId: string) => {
@@ -39,7 +40,7 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
     }
 
     const [galleryImages, setGalleryImages] = useState<string[]>(
-        project?.gallery_images?.map((img: any) => img.url) || []
+        project?.gallery_images?.map((img) => img.url) || []
     )
 
     const addGalleryImage = () => {
@@ -86,13 +87,13 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
                 router.refresh()
                 router.push("/admin/projects")
             }
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error(error)
             // If it's a redirect error (which shouldn't happen now), ignore it
-            if (error.message === 'NEXT_REDIRECT') return;
+            if (error instanceof Error && error.message === 'NEXT_REDIRECT') return;
 
             toast.error("Algo salió mal", {
-                description: error.message || "Error desconocido"
+                description: error instanceof Error ? error.message : "Error desconocido"
             })
         } finally {
             setLoading(false)
@@ -108,7 +109,7 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
                         <Input
                             id="title"
                             name="title"
-                            defaultValue={project?.title}
+                            defaultValue={project?.title ?? ""}
                             placeholder="Mi Proyecto Increíble"
                             required
                         />
@@ -118,7 +119,7 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
                         <Input
                             id="slug"
                             name="slug"
-                            defaultValue={project?.slug}
+                            defaultValue={project?.slug ?? ""}
                             placeholder="mi-proyecto-increible"
                             required
                         />
@@ -130,7 +131,7 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
                     <Textarea
                         id="short_description"
                         name="short_description"
-                        defaultValue={project?.short_description}
+                        defaultValue={project?.short_description ?? ""}
                         placeholder="Resumen para la tarjeta..."
                         required
                     />
@@ -141,7 +142,7 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
                     <Textarea
                         id="content"
                         name="content"
-                        defaultValue={project?.content}
+                        defaultValue={project?.content ?? ""}
                         placeholder="# Detalles del proyecto..."
                         className="min-h-[200px] font-mono"
                     />
@@ -153,7 +154,7 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
                         <Input
                             id="github_url"
                             name="github_url"
-                            defaultValue={project?.github_url}
+                            defaultValue={project?.github_url ?? ""}
                             placeholder="https://github.com/..."
                         />
                     </div>
@@ -162,7 +163,7 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
                         <Input
                             id="demo_url"
                             name="demo_url"
-                            defaultValue={project?.demo_url}
+                            defaultValue={project?.demo_url ?? ""}
                             placeholder="https://..."
                         />
                     </div>

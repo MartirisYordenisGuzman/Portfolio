@@ -7,9 +7,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { createTag, updateTag } from "@/app/admin/actions"
 import { toast } from "sonner"
+import { Tag } from "@/types/database"
 
 interface TagFormProps {
-    tag?: any
+    tag?: Tag
     isEditing?: boolean
 }
 

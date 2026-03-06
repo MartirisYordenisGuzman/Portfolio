@@ -11,6 +11,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useLayoutMode } from "@/components/providers/layout-mode-provider"
 
 const stack = [
     {
@@ -55,8 +56,10 @@ const stack = [
 ]
 
 export default function AboutPage() {
+    const { isSpaMode } = useLayoutMode()
+
     return (
-        <div className="mx-auto w-full max-w-[85vw] py-8 md:py-10">
+        <div className={`mx-auto w-full max-w-[85vw] pt-8 md:pt-10 ${isSpaMode ? 'pb-0' : 'pb-8 md:pb-10'}`}>
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
                 {/* Main Content */}
                 <div className="max-w-3xl space-y-8 lg:col-span-2">
@@ -79,19 +82,13 @@ export default function AboutPage() {
                             <h2 className="text-2xl font-bold">Mi Historia</h2>
                             <div className="prose dark:prose-invert">
                                 <p>
-                                    En mi último año de secundaria me enfrenté al dilema de decidir qué estudiar. Siempre tuve afinidad por la informática, aunque al inicio no lo veía como un camino profesional claro. Fue a través de cursos gratuitos de programación y siguiendo a distintas personalidades del área que encontré la motivación para profundizar en este mundo.
+                                    ¡Hola! Soy Martiris Yordenis. Mi curiosidad por la tecnología despertó en la secundaria, y lo que comenzó como un interés por los videojuegos rápidamente evolucionó hacia una verdadera vocación por la creación de páginas y aplicaciones web. A través de cursos online y mucha dedicación autodidacta, encontré en la programación el equilibrio perfecto entre exprimir la lógica y diseñar una gran experiencia de usuario.
                                 </p>
                                 <p>
-                                    En un principio me sentí atraído por el desarrollo de videojuegos, pero con el tiempo comprendí que mi verdadera pasión estaba en la creación de páginas y aplicaciones web y de escritorio. Descubrí que me motiva desarrollar la destreza y las habilidades necesarias para diseñar y construir productos o servicios funcionales, cuidando tanto la lógica como la experiencia del usuario.
+                                    Para profesionalizar mi perfil, ingresé a la carrera de Informática en la UASD y me he mantenido en constante aprendizaje. A lo largo de mi trayecto, he forjado bases sólidas en desarrollo web, JavaScript, Python e Inteligencia Artificial, complementándome con bootcamps intensivos, certificaciones de freeCodeCamp y programas como el Samsung Innovation Campus. Mi enfoque siempre está en escribir código moderno, limpio y bien estructurado.
                                 </p>
                                 <p>
-                                    Decidí formalizar este interés inscribiéndome en la Licenciatura en Informática en la Universidad Autónoma de Santo Domingo. Paralelamente, he complementado mi formación con cursos y programas en distintas plataformas e instituciones como ITLA, Coursera, Udemy y Talending, donde realicé un bootcamp en desarrollo web. Más recientemente, participé en Samsung Innovation Campus, donde me capacité en Python e Inteligencia Artificial.
-                                </p>
-                                <p>
-                                    Además, cuento con certificaciones de freeCodeCamp en Diseño Web Responsivo y Estructuras de Datos y Algoritmos en JavaScript, lo que ha fortalecido mis bases técnicas y mi enfoque en la escritura de código limpio y bien estructurado.
-                                </p>
-                                <p>
-                                    Hoy continúo formándome de manera constante, con el objetivo de seguir creciendo como desarrollador y aportar soluciones tecnológicas prácticas, escalables y bien diseñadas.
+                                    Me apasiona enfrentarme a nuevos retos técnicos y lograr transformar ideas complejas en soluciones sencillas, eficientes y agradables a la vista. Mi mayor aspiración es seguir creciendo día a día como desarrollador de software y unirme a proyectos donde pueda aportar valor real e innovar. ¡Disfruto cada parte del proceso y me entusiasma seguir construyendo el futuro con código!
                                 </p>
                             </div>
                         </section>
@@ -116,57 +113,59 @@ export default function AboutPage() {
                         </section>
                     </ScrollAnimation>
 
-                    <Separator />
+                    {!isSpaMode && <Separator />}
 
-                    {/* Connect */}
-                    <ScrollAnimation>
-                        <section className="space-y-4">
-                            <h2 className="text-2xl font-bold">Conectemos</h2>
-                            <p className="text-muted-foreground">
-                                Actualmente estoy abierto a nuevas oportunidades donde pueda aportar valor.
-                            </p>
-                            <div className="flex flex-wrap gap-4 pt-4">
-                                <Link href="/contact">
-                                    <Button>
-                                        <Mail className="mr-2 h-4 w-4" />
-                                        Contáctame
-                                    </Button>
-                                </Link>
-                                <Link href="https://github.com/MartirisYordenisGuzman" target="_blank">
-                                    <Button variant="outline">
-                                        <Github className="mr-2 h-4 w-4" />
-                                        GitHub
-                                    </Button>
-                                </Link>
-                                <Link href="https://www.linkedin.com/in/martiris-yordenis-guzmán" target="_blank">
-                                    <Button variant="outline">
-                                        <Linkedin className="mr-2 h-4 w-4" />
-                                        LinkedIn
-                                    </Button>
-                                </Link>
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant="ghost">
-                                            <FileText className="mr-2 h-4 w-4" />
-                                            Descargar CV
+                    {/* Connect (Hidden in SPA Mode) */}
+                    {!isSpaMode && (
+                        <ScrollAnimation>
+                            <section className="space-y-4">
+                                <h2 className="text-2xl font-bold">Conectemos</h2>
+                                <p className="text-muted-foreground">
+                                    Actualmente estoy abierto a nuevas oportunidades donde pueda aportar valor.
+                                </p>
+                                <div className="flex flex-wrap gap-4 pt-4">
+                                    <Link href="/contact">
+                                        <Button>
+                                            <Mail className="mr-2 h-4 w-4" />
+                                            Contáctame
                                         </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                        <DropdownMenuItem asChild>
-                                            <a href="/cv/cv-es.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
-                                                Versión en Español
-                                            </a>
-                                        </DropdownMenuItem>
-                                        <DropdownMenuItem asChild>
-                                            <a href="/cv/cv-en.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
-                                                Versión en Inglés
-                                            </a>
-                                        </DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                            </div>
-                        </section>
-                    </ScrollAnimation>
+                                    </Link>
+                                    <Link href="https://github.com/MartirisYordenisGuzman" target="_blank">
+                                        <Button variant="outline">
+                                            <Github className="mr-2 h-4 w-4" />
+                                            GitHub
+                                        </Button>
+                                    </Link>
+                                    <Link href="https://www.linkedin.com/in/martiris-yordenis-guzmán" target="_blank">
+                                        <Button variant="outline">
+                                            <Linkedin className="mr-2 h-4 w-4" />
+                                            LinkedIn
+                                        </Button>
+                                    </Link>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="ghost">
+                                                <FileText className="mr-2 h-4 w-4" />
+                                                Descargar CV
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end">
+                                            <DropdownMenuItem asChild>
+                                                <a href="/cv/cv-es.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
+                                                    Versión en Español
+                                                </a>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem asChild>
+                                                <a href="/cv/cv-en.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer w-full">
+                                                    Versión en Inglés
+                                                </a>
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+                            </section>
+                        </ScrollAnimation>
+                    )}
 
                 </div>
 

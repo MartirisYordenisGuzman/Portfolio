@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { ProjectForm } from "@/components/features/admin/ProjectForm"
 import { notFound } from "next/navigation"
+import { Project, Tag } from "@/types/database"
 
 interface EditProjectPageProps {
     params: {
@@ -39,9 +40,9 @@ export default async function EditProjectPage({ params }: EditProjectPageProps) 
     }
 
     // Transform project tags to flattened structure expected by form
-    const projectWithTags = {
+    const projectWithTags: Project = {
         ...project,
-        tags: project.project_tags?.map((pt: any) => pt.tags) || []
+        tags: (project.project_tags as { tags: Tag }[])?.map((pt) => pt.tags) || []
     }
 
     return (

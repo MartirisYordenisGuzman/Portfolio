@@ -1,14 +1,42 @@
 "use client"
 
+import { useState, useMemo } from "react"
 import { Project } from "@/types/database"
 import { ProjectCard } from "@/components/features/projects/ProjectCard"
 import { ScrollAnimation } from "@/components/ui/scroll-animation"
+import { Button } from "@/components/ui/button"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface ProjectsViewProps {
     projects: Project[]
 }
 
 export function ProjectsView({ projects }: ProjectsViewProps) {
+    const [selectedTag, setSelectedTag] = useState<string | null>(null)
+    const [visibleCount, setVisibleCount] = useState<number>(3)
+
+    const allTags = useMemo(() => {
+        const tags = new Set<string>()
+        projects.forEach(project => {
+            project.tags?.forEach(tag => tags.add(tag.name))
+        })
+        return Array.from(tags).sort()
+    }, [projects])
+
+    const filteredProjects = useMemo(() => {
+        if (!selectedTag) return projects
+        return projects.filter(project =>
+            project.tags?.some(tag => tag.name === selectedTag)
+        )
+    }, [projects, selectedTag])
+
+    const visibleProjects = filteredProjects.slice(0, visibleCount)
+    const hasMore = visibleCount < filteredProjects.length
+
+    const handleTagSelect = (tag: string | null) => {
+        setSelectedTag(tag)
+        setVisibleCount(3) // Reset visibility when filter changes
+    }
 
     return (
         <div className="mx-auto w-full max-w-6xl px-4 md:px-0 py-8 md:py-10">
@@ -24,15 +52,64 @@ export function ProjectsView({ projects }: ProjectsViewProps) {
                         Una selección de soluciones técnicas y arquitecturas que he diseñado.
                     </p>
                 </div>
+
+                {allTags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 pt-2">
+                        <Button
+                            variant={selectedTag === null ? "default" : "secondary"}
+                            size="sm"
+                            className="rounded-full rounded-md text-xs h-8"
+                            onClick={() => handleTagSelect(null)}
+                        >
+                            Todos
+                        </Button>
+                        {allTags.map(tag => (
+                            <Button
+                                key={tag}
+                                variant={selectedTag === tag ? "default" : "secondary"}
+                                size="sm"
+                                className="rounded-full rounded-md text-xs h-8"
+                                onClick={() => handleTagSelect(tag)}
+                            >
+                                {tag}
+                            </Button>
+                        ))}
+                    </div>
+                )}
             </div>
-            {projects.length > 0 ? (
-                <div className="flex flex-col gap-12 md:gap-20">
-                    {projects.map((project) => (
-                        <ScrollAnimation key={project.id} className="w-full">
-                            <ProjectCard project={project} />
-                        </ScrollAnimation>
-                    ))}
-                </div>
+            {filteredProjects.length > 0 ? (
+                <motion.div layout className="flex flex-col gap-12 md:gap-20">
+                    <AnimatePresence mode="popLayout">
+                        {visibleProjects.map((project) => (
+                            <motion.div
+                                key={project.id}
+                                layout
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                transition={{ duration: 0.3 }}
+                                className="w-full"
+                            >
+                                <ScrollAnimation className="w-full">
+                                    <ProjectCard project={project} />
+                                </ScrollAnimation>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+
+                    {hasMore && (
+                        <motion.div layout className="flex justify-center pt-8">
+                            <Button
+                                variant="outline"
+                                size="lg"
+                                className="rounded-full px-8"
+                                onClick={() => setVisibleCount(prev => prev + 3)}
+                            >
+                                Ver más proyectos
+                            </Button>
+                        </motion.div>
+                    )}
+                </motion.div>
             ) : (
                 <div className="flex w-full justify-center py-20 text-muted-foreground">
                     No projects found yet.

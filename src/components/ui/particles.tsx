@@ -23,7 +23,7 @@ export default function Particles({
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const canvasContainerRef = useRef<HTMLDivElement>(null)
     const context = useRef<CanvasRenderingContext2D | null>(null)
-    const circles = useRef<any[]>([])
+    const circles = useRef<Circle[]>([])
     const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
     const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 })
     const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1
@@ -31,11 +31,7 @@ export default function Particles({
     const [color, setColor] = useState("#ffffff")
 
     useEffect(() => {
-        if (theme === "dark") {
-            setColor("#ffffff")
-        } else {
-            setColor("#000000")
-        }
+        setColor(theme === "dark" ? "#ffffff" : "#000000")
     }, [theme])
 
     type Circle = {
@@ -215,10 +211,12 @@ export default function Particles({
         return () => {
             window.removeEventListener("resize", initCanvas)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [color])
 
     useEffect(() => {
         initCanvas()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [refresh])
 
     return (

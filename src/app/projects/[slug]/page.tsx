@@ -1,8 +1,6 @@
-import { Project } from "@/types/database"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import Image from "next/image"
-import { Github, Globe, Calendar, Clock, ArrowLeft } from "lucide-react"
+import { Github, Globe, Clock } from "lucide-react"
 import { MDXRemote } from "next-mdx-remote/rsc"
 
 import { getProjects, getProjectBySlug } from "@/lib/api/projects"
@@ -11,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { formatDate } from "@/lib/utils"
 import { Tag } from "@/types/database"
 import { ImageGallery } from "@/components/features/projects/ImageGallery"
+import { SmartBackLink } from "@/components/ui/smart-back-link"
 
 interface ProjectPageProps {
     params: Promise<{
@@ -40,13 +39,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
                 {/* Back Link */}
                 <div className="mb-8 md:mb-12">
-                    <Link
-                        href="/projects"
-                        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        Volver a Proyectos
-                    </Link>
+                    <SmartBackLink
+                        spaHref="/#projects"
+                        multiHref="/projects"
+                        label="Volver a Proyectos"
+                    />
                 </div>
 
                 {/* Article Header */}

@@ -15,13 +15,27 @@ import {
     SheetTitle,
 } from "@/components/ui/sheet"
 import { ModeToggle } from "@/components/mode-toggle"
+import { useLayoutMode } from "@/components/providers/layout-mode-provider"
+import { SpaNavbar } from "@/components/layout/SpaNavbar"
+import { Monitor } from "lucide-react"
 
 export function Navbar() {
     const pathname = usePathname()
     const [isOpen, setIsOpen] = React.useState(false)
+    const { isSpaMode, toggleLayoutMode } = useLayoutMode()
+    const [shouldAnimate, setShouldAnimate] = React.useState(false)
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => setShouldAnimate(true), 1500)
+        return () => clearTimeout(timer)
+    }, [])
 
     if (pathname.startsWith("/admin") || pathname === "/login") {
         return null
+    }
+
+    if (isSpaMode) {
+        return <SpaNavbar />
     }
 
     const routes = [
@@ -34,12 +48,12 @@ export function Navbar() {
             label: "Sobre Mí",
         },
         {
-            href: "/blog",
-            label: "Blog",
-        },
-        {
             href: "/contact",
             label: "Contacto",
+        },
+        {
+            href: "/blog",
+            label: "Blog",
         },
     ]
 
@@ -125,6 +139,20 @@ export function Navbar() {
                         </Link>
                     </div>
                     <div className="hidden md:flex items-center gap-2">
+                        <button
+                            onClick={() => toggleLayoutMode()}
+                            title="Cambiar a modo Single Page"
+                            className={cn(
+                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+                                shouldAnimate && "animate-[sync-pulse-shadow_1.5s_ease-out_3]"
+                            )}
+                        >
+                            <Monitor className={cn(
+                                "h-4 w-4 relative z-10",
+                                shouldAnimate && "animate-[sync-pulse-icon_1.5s_ease-out_3]"
+                            )} />
+                            <span className="sr-only">Modo SPA</span>
+                        </button>
                         <ModeToggle />
                     </div>
 
@@ -201,6 +229,22 @@ export function Navbar() {
                                             </Link>
                                         </div>
                                         <div className="flex items-center gap-4">
+                                            <button
+                                                onClick={() => {
+                                                    toggleLayoutMode();
+                                                    setIsOpen(false);
+                                                }}
+                                                className={cn(
+                                                    "relative rounded-full bg-secondary p-3 transition-colors hover:bg-primary hover:text-primary-foreground",
+                                                    shouldAnimate && "animate-[sync-pulse-shadow_1.5s_ease-out_3]"
+                                                )}
+                                            >
+                                                <Monitor className={cn(
+                                                    "h-5 w-5 relative z-10",
+                                                    shouldAnimate && "animate-[sync-pulse-icon_1.5s_ease-out_3]"
+                                                )} />
+                                                <span className="sr-only">Modo SPA</span>
+                                            </button>
                                             <ModeToggle />
                                         </div>
                                     </div>
