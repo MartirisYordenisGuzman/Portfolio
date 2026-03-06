@@ -8,7 +8,6 @@ import { ArrowRight, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Particles from "@/components/ui/particles"
 import { useLayoutMode } from "@/providers/layout-mode-provider"
-import { useLayoutMode } from "@/providers/layout-mode-provider"
 
 export function HeroSection() {
     const { isSpaMode } = useLayoutMode()
@@ -108,7 +107,7 @@ export function HeroSection() {
                         </Button>
                     </Link>
                     <a
-                        href="/cv/Martiris Guzman Resume JS-TS.pdf"
+                        href="/cv/cv-en.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-full sm:w-auto"
