@@ -156,6 +156,23 @@ export function Navbar() {
                     </div>
 
                     {/* Mobile Menu Trigger (moved to right) */}
+                    <div className="flex items-center gap-1 md:hidden">
+                        <button
+                            onClick={() => toggleLayoutMode()}
+                            title="Cambiar a modo Single Page"
+                            className={cn(
+                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+                                shouldAnimate && "animate-[sync-pulse-shadow_1.5s_ease-out_3]"
+                            )}
+                        >
+                            <Layers className={cn(
+                                "h-6 w-6 relative z-10",
+                                shouldAnimate && "animate-[sync-pulse-icon_1.5s_ease-out_3]"
+                            )} />
+                            <span className="sr-only">Modo SPA</span>
+                        </button>
+                    </div>
+
                     <Sheet open={isOpen} onOpenChange={setIsOpen}>
                         <SheetTrigger asChild>
                             <Button
