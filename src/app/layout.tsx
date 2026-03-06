@@ -18,8 +18,32 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MartirisDev | Full Stack Software Engineer",
+  title: {
+    default: "MartirisDev | Full Stack Software Engineer",
+    template: "%s | MartirisDev"
+  },
   description: "Full Stack Developer specializing in scalable architectures, React, and Supabase. View my case studies and technical articles.",
+  keywords: ["Full Stack Developer", "Software Engineer", "React", "Next.js", "Supabase", "TypeScript", "Portfolio"],
+  authors: [{ name: "Martiris Yordenis Guzman" }],
+  creator: "Martiris Yordenis Guzman",
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    url: "https://martirisdev.com",
+    title: "MartirisDev | Full Stack Software Engineer",
+    description: "Full Stack Developer specializing in scalable architectures, React, and Supabase.",
+    siteName: "MartirisDev Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MartirisDev | Full Stack Software Engineer",
+    description: "Full Stack Developer specializing in scalable architectures, React, and Supabase.",
+    creator: "@martirisdev",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
