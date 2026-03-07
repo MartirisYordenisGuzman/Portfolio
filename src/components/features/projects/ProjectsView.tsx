@@ -5,7 +5,7 @@ import { Project } from "@/types/database"
 import { ProjectCard } from "@/components/features/projects/ProjectCard"
 import { ScrollAnimation } from "@/components/ui/scroll-animation"
 import { Button } from "@/components/ui/button"
-import { motion, AnimatePresence } from "framer-motion"
+import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion"
 
 interface ProjectsViewProps {
     projects: Project[]
@@ -78,38 +78,40 @@ export function ProjectsView({ projects }: ProjectsViewProps) {
                 )}
             </div>
             {filteredProjects.length > 0 ? (
-                <motion.div layout className="flex flex-col gap-12 md:gap-20">
-                    <AnimatePresence mode="popLayout">
-                        {visibleProjects.map((project) => (
-                            <motion.div
-                                key={project.id}
-                                layout
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.3 }}
-                                className="w-full"
-                            >
-                                <ScrollAnimation className="w-full">
-                                    <ProjectCard project={project} />
-                                </ScrollAnimation>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
+                <LazyMotion features={domAnimation}>
+                    <m.div layout className="flex flex-col gap-12 md:gap-20">
+                        <AnimatePresence mode="popLayout">
+                            {visibleProjects.map((project) => (
+                                <m.div
+                                    key={project.id}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="w-full"
+                                >
+                                    <ScrollAnimation className="w-full">
+                                        <ProjectCard project={project} />
+                                    </ScrollAnimation>
+                                </m.div>
+                            ))}
+                        </AnimatePresence>
 
-                    {hasMore && (
-                        <motion.div layout className="flex justify-center pt-8">
-                            <Button
-                                variant="outline"
-                                size="lg"
-                                className="rounded-full px-8"
-                                onClick={() => setVisibleCount(prev => prev + 3)}
-                            >
-                                Ver más proyectos
-                            </Button>
-                        </motion.div>
-                    )}
-                </motion.div>
+                        {hasMore && (
+                            <m.div layout className="flex justify-center pt-8">
+                                <Button
+                                    variant="outline"
+                                    size="lg"
+                                    className="rounded-full px-8"
+                                    onClick={() => setVisibleCount(prev => prev + 3)}
+                                >
+                                    Ver más proyectos
+                                </Button>
+                            </m.div>
+                        )}
+                    </m.div>
+                </LazyMotion>
             ) : (
                 <div className="flex w-full justify-center py-20 text-muted-foreground">
                     No projects found yet.

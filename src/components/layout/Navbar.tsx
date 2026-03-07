@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, Terminal, Github, Linkedin, Layers } from "lucide-react"
-import { motion } from "framer-motion"
+import { LazyMotion, domAnimation, m } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -200,27 +200,29 @@ export function Navbar() {
                                     */}
                                 </div>
 
-                                <motion.div
-                                    className="flex-1 flex flex-col justify-center items-center gap-8"
-                                    variants={containerVariants}
-                                    initial="hidden"
-                                    animate="show"
-                                >
-                                    {routes.map((route) => (
-                                        <motion.div key={route.href} variants={itemVariants}>
-                                            <Link
-                                                href={route.href}
-                                                className={cn(
-                                                    "text-4xl font-bold tracking-tight transition-colors hover:text-primary",
-                                                    pathname === route.href ? "text-foreground" : "text-muted-foreground"
-                                                )}
-                                                onClick={() => setIsOpen(false)}
-                                            >
-                                                {route.label}
-                                            </Link>
-                                        </motion.div>
-                                    ))}
-                                </motion.div>
+                                <LazyMotion features={domAnimation}>
+                                    <m.div
+                                        className="flex-1 flex flex-col justify-center items-center gap-8"
+                                        variants={containerVariants}
+                                        initial="hidden"
+                                        animate="show"
+                                    >
+                                        {routes.map((route) => (
+                                            <m.div key={route.href} variants={itemVariants}>
+                                                <Link
+                                                    href={route.href}
+                                                    className={cn(
+                                                        "text-4xl font-bold tracking-tight transition-colors hover:text-primary",
+                                                        pathname === route.href ? "text-foreground" : "text-muted-foreground"
+                                                    )}
+                                                    onClick={() => setIsOpen(false)}
+                                                >
+                                                    {route.label}
+                                                </Link>
+                                            </m.div>
+                                        ))}
+                                    </m.div>
+                                </LazyMotion>
 
                                 <div className="p-8 border-t border-border/10">
                                     <div className="flex flex-col gap-6 items-center">

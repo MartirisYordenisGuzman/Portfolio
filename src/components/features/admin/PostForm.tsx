@@ -22,7 +22,9 @@ interface PostFormProps {
     allTags?: Tag[]
 }
 
-export function PostForm({ post, isEditing = false, allTags = [] }: PostFormProps) {
+const EMPTY_TAGS: Tag[] = []
+
+export function PostForm({ post, isEditing = false, allTags = EMPTY_TAGS }: PostFormProps) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [coverImage, setCoverImage] = useState(post?.cover_image || "")

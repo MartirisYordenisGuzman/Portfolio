@@ -94,12 +94,12 @@ export function AboutContent({ isSpaMode = false }: AboutContentProps) {
                         <section className="space-y-6">
                             <h2 className="text-2xl font-bold">Arsenal Técnico</h2>
                             <div className="grid gap-6 sm:grid-cols-2">
-                                {stack.map((category, index) => (
-                                    <div key={index} className="space-y-3">
+                                {stack.map((category) => (
+                                    <div key={category.category} className="space-y-3">
                                         <h3 className="font-medium text-lg">{category.category}</h3>
                                         <ul className="list-disc pl-5 text-muted-foreground space-y-1">
-                                            {category.items.map((item, itemIndex) => (
-                                                <li key={itemIndex}>{item}</li>
+                                            {category.items.map((item) => (
+                                                <li key={item}>{item}</li>
                                             ))}
                                         </ul>
                                     </div>
@@ -137,16 +137,17 @@ export function AboutContent({ isSpaMode = false }: AboutContentProps) {
                                             LinkedIn
                                         </Button>
                                     </Link>
-                                    <a
+                                    <Link
                                         href="/cv/cv-en.pdf"
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        prefetch={false}
                                     >
                                         <Button variant="ghost">
                                             <FileText className="mr-2 h-4 w-4" />
                                             Descargar CV
                                         </Button>
-                                    </a>
+                                    </Link>
                                 </div>
                             </section>
                         </ScrollAnimation>

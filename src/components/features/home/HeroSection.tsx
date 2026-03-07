@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { LazyMotion, domAnimation, m } from "framer-motion"
 import { ArrowRight, FileText } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -106,11 +106,12 @@ export function HeroSection() {
                             Contáctame
                         </Button>
                     </Link>
-                    <a
+                    <Link
                         href="/cv/cv-en.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-full sm:w-auto"
+                        prefetch={false}
                     >
                         <Button
                             variant="ghost"
@@ -120,24 +121,27 @@ export function HeroSection() {
                             <FileText className="mr-2 h-4 w-4" />
                             Descargar CV
                         </Button>
-                    </a>
+                    </Link>
                 </div>
             </div>
 
             <div className="flex justify-center order-1 md:order-2 w-full md:w-auto mb-2 md:mb-0">
-                <motion.div
-                    className="relative h-[150px] w-[150px] sm:h-[250px] sm:w-[250px] md:h-[350px] md:w-[350px] rounded-full border-4 border-background/50 shadow-xl overflow-hidden backdrop-blur-sm"
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    <Image
-                        src="/profile.jpg"
-                        alt="Profile picture"
-                        fill
-                        className="object-cover object-[center_20%]"
-                        priority
-                    />
-                </motion.div>
+                <LazyMotion features={domAnimation}>
+                    <m.div
+                        className="relative h-[150px] w-[150px] sm:h-[250px] sm:w-[250px] md:h-[350px] md:w-[350px] rounded-full border-4 border-background/50 shadow-xl overflow-hidden backdrop-blur-sm"
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        <Image
+                            src="/profile.jpg"
+                            alt="Profile picture"
+                            fill
+                            className="object-cover object-[center_20%]"
+                            priority
+                            sizes="(max-width: 640px) 150px, (max-width: 768px) 250px, 350px"
+                        />
+                    </m.div>
+                </LazyMotion>
             </div>
         </section>
     )

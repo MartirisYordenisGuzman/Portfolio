@@ -1,7 +1,7 @@
 "use client"
 
 import { useTheme } from "next-themes"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -28,11 +28,7 @@ export default function Particles({
     const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 })
     const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1
     const { theme } = useTheme()
-    const [color, setColor] = useState("#ffffff")
-
-    useEffect(() => {
-        setColor(theme === "dark" ? "#ffffff" : "#000000")
-    }, [theme])
+    const color = theme === "dark" ? "#ffffff" : "#000000"
 
     type Circle = {
         x: number

@@ -21,7 +21,9 @@ interface ProjectFormProps {
     allTags?: Tag[]
 }
 
-export function ProjectForm({ project, isEditing = false, allTags = [] }: ProjectFormProps) {
+const EMPTY_TAGS: Tag[] = []
+
+export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }: ProjectFormProps) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [coverImage, setCoverImage] = useState(project?.cover_image || "")
@@ -183,7 +185,7 @@ export function ProjectForm({ project, isEditing = false, allTags = [] }: Projec
                     <Label>Galería de Imágenes</Label>
                     <div className="space-y-3">
                         {galleryImages.map((url, index) => (
-                            <div key={index} className="flex gap-2 items-start">
+                            <div key={url ? url : `new-${index}`} className="flex gap-2 items-start">
                                 <div className="flex-1">
                                     <ImageUpload
                                         value={url}

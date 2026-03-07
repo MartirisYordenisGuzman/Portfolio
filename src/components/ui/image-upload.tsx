@@ -4,7 +4,6 @@ import { useState, useRef } from "react"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Loader2, Upload, X } from "lucide-react"
 import { toast } from "sonner"
 import Image from "next/image"
@@ -38,7 +37,7 @@ export function ImageUpload({
             const fileExt = file.name.split('.').pop()
             const fileName = `${folder}/${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`
 
-            const { error: uploadError, data } = await supabase.storage
+            const { error: uploadError } = await supabase.storage
                 .from(bucket)
                 .upload(fileName, file, {
                     cacheControl: '3600',
@@ -85,6 +84,7 @@ export function ImageUpload({
                             alt="Cover"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 400px"
                         />
                         <Button
                             type="button"
@@ -98,13 +98,14 @@ export function ImageUpload({
                         </Button>
                     </div>
                 ) : (
-                    <div
+                    <button
+                        type="button"
                         className="flex flex-col items-center justify-center aspect-video w-full max-w-sm rounded-lg border border-dashed bg-muted/50 hover:bg-muted/80 transition-colors cursor-pointer"
                         onClick={() => fileInputRef.current?.click()}
                     >
                         <Upload className="h-8 w-8 text-muted-foreground mb-2" />
                         <span className="text-sm text-muted-foreground">Clic para subir imagen</span>
-                    </div>
+                    </button>
                 )}
 
                 <Input
