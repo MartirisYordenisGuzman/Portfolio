@@ -107,7 +107,7 @@ export function HeroSection() {
                         </Button>
                     </Link>
                     <Link
-                        href="/cv/cv-en.pdf"
+                        href="/cv/Martiris_Guzman_Resume_JS-TS.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-full sm:w-auto"
