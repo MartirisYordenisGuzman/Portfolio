@@ -2,114 +2,79 @@
 
 Bienvenido a mi portafolio personal. Este es un espacio donde comparto mi trayectoria como Ingeniero de Software, mis proyectos más destacados y mis conocimientos técnicos. El sitio está diseñado con un enfoque en la modernidad, la velocidad y la experiencia de usuario premium.
 
-![Portada del Portafolio](./public/screenshots/hero.png)
+![Portada del Portafolio](./public/screenshots/hero_dark.png)
 
 ## 🚀 Características y Funcionalidades
 
-- **Diseño Moderno y Adaptativo:** Una interfaz limpia y profesional que se ajusta perfectamente a dispositivos móviles y de escritorio.
-- **Sección de Proyectos Rediseñada:** Visualización horizontal de proyectos con un enfoque visual impactante, incluyendo detalles técnicos y enlaces directos a código y demostraciones.
-- **Descarga de CV Bilingüe:** Menú desplegable integrado tanto en la página de inicio como en "Sobre Mí" para descargar mi CV en español o inglés.
-- **Filtro de Proyectos y Contenido:** Organización eficiente de proyectos mediante etiquetas y categorías.
-- **Optimización de Traducción:** El sitio utiliza español estático como base para garantizar la mejor compatibilidad con los traductores automáticos de los navegadores modernos.
-- **Modo Oscuro/Claro:** Soporte completo para temas visuales que se adaptan a la preferencia del usuario.
+- **Doble Modo de Navegación (Layout Toggle):** Única funcionalidad que permite al usuario alternar instantáneamente entre una experiencia **Single Page Application (SPA)** con scrolls suaves y una estructura **Multi-página** tradicional, manteniendo el estado de la aplicación.
+- **Diseño Moderno y Adaptativo:** Interfaz limpia y profesional que utiliza Tailwind v4 para una visualización perfecta en cualquier dispositivo.
+- **Modo Oscuro/Claro Nativo:** Soporte completo para temas visuales que se adaptan a la preferencia del sistema o del usuario mediante un toggle intuitivo.
+- **Sección de Proyectos Dinámica:** Visualización de proyectos con filtrado por tecnologías y una galería de imágenes integrada para una inspección detallada.
+- **Panel de Administración Robusto:** Dashboard privado para gestionar proyectos, artículos del blog y etiquetas sin necesidad de modificar el código.
+- **Descarga de CV Bilingüe:** Acceso rápido a versiones de mi currículum en español e inglés.
 
 ## 🛠️ Tecnologías y Arquitectura
 
-Este proyecto fue construido utilizando herramientas de vanguardia para garantizar escalabilidad y rendimiento:
+Este proyecto utiliza el stack más moderno para garantizar el mejor rendimiento:
 
-- **Framework:** [Next.js 16](https://nextjs.org/) (App Router, Server Components y Turbopack).
-- **Lenguaje:** [TypeScript](https://www.typescriptlang.org/) para un desarrollo robusto y seguro.
-- **Estilos:** [Tailwind CSS](https://tailwindcss.com/) para un diseño ágil y altamente personalizable.
-- **Componentes UI:** [Shadcn UI](https://ui.shadcn.com/) sobre Radix Primitives.
-- **Animaciones:** [Framer Motion](https://www.framer.com/motion/) para micro-interacciones suaves.
-- **Backend:** [Supabase](https://supabase.com/) como base de datos y gestión de contenido.
-- **Seguridad:** Actualización constante de dependencias (como `next-mdx-remote`) para mitigar vulnerabilidades.
-
-### Por qué esta Stack?
-Elegí **Next.js** por su excelente manejo del SEO gracias al Server-Side Rendering (SSR) y su velocidad de carga. **Tailwind CSS** permite una consistencia visual sin sacrificar el rendimiento, mientras que **Supabase** ofrece una infraestructura backend flexible que me permite centrarme en el frontend.
-
-## � Panel de Administración
-
-El sitio incluye un robusto panel de gestión (`/admin`) para controlar todo el contenido dinámico sin necesidad de tocar el código o la base de datos directamente.
-
-![Dashboard Administrativo](./public/screenshots/admin_dashboard.png)
-
-### Funcionalidades del Panel:
-- **Gestión de Proyectos:** Creación, edición y eliminación de proyectos. Permite configurar slugs, descripciones, imágenes de portada y etiquetas.
-- **Gestión de Artículos (Blog):** Editor de posts para compartir conocimientos o actualizaciones.
-- **Control de Etiquetas (Tags):** Sistema de categorización compartido entre proyectos y posts.
-- **Bandeja de Contacto:** Visualización de los mensajes recibidos a través del formulario del sitio.
-
-![Gestión de Proyectos](./public/screenshots/admin_projects.png)
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router & Turbopack).
+- **Animaciones:** [Framer Motion](https://www.framer.com/motion/) para transiciones y el efecto de pulso sincronizado en el toggle de layout.
+- **Estilos:** [Tailwind CSS v4](https://tailwindcss.com/) nativo.
+- **Componentes:** [Shadcn UI](https://ui.shadcn.com/) y Radix Primitives.
+- **Backend & Auth:** [Supabase](https://supabase.com/).
 
 ---
 
-## ☁️ Integración con Supabase
+## ⚡ Experiencia de Usuario: Layout Toggle
 
-Para aquellos que deseen replicar o utilizar este portafolio, es fundamental configurar Supabase de la siguiente manera:
+Una de las características principales de este portafolio es el botón de **Layout Mode**. Ubicado en la barra de navegación, permite cambiar la lógica de navegación del sitio:
 
-### 1. Variables de Entorno
-Crea un archivo `.env.local` en la raíz del proyecto con tus credenciales:
-```env
-NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase
-NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_anonima
-```
+1. **Modo SPA:** Navegación fluida dentro de la misma página, ideal para una lectura rápida y lineal.
+2. **Modo Clásico:** Rutas separadas para cada sección, mejorando el SEO y permitiendo compartir enlaces específicos.
 
-### 2. Configuración de la Base de Datos
-Debes ejecutar los scripts SQL localizados en `supabase/migrations/`. Especialmente `supabase_schema.sql`. Estos scripts se encargan de:
-- Habilitar las extensiones necesarias (`pgcrypto`).
-- Crear las tablas (`projects`, `posts`, `tags`, `contacts`, etc.).
-- Configurar las políticas de **Row Level Security (RLS)** para que el contenido solo sea editable por usuarios autenticados (Admin), pero legible por el público.
-
-### 3. Autenticación
-El panel detecta automáticamente si hay una sesión activa. Asegúrate de crear tu usuario administrador desde el dashboard de Supabase (Sección Auth). Una vez logueado como usuario `authenticated`, tendrás acceso completo a las funciones de escritura en `/admin`.
+![Doble Modo de Layout](./public/screenshots/layout_toggle_spa.png)
+*Icono de capas animado indicando la disponibilidad del cambio de modo.*
 
 ---
 
-## �📁 Estructura del Proyecto
+## 📁 Estructura del Proyecto
 
 ```text
 src/
-├── app/            # Rutas de Next.js (App Router)
-├── components/     # Componentes de UI y lógica de presentación
-│   ├── ui/         # Componentes base (shadcn)
-│   ├── layout/     # Componentes globales (Navbar, Footer)
-│   └── features/   # Componentes específicos por funcionalidad
-├── providers/      # Contextos y proveedores globales (Tema, LayoutMode)
-├── lib/            # Utilidades, API clientes y configuración
-│   └── data/       # Datos estáticos y mocks
-├── types/          # Definiciones de TypeScript para la base de datos
-├── middleware.ts   # Middleware de Next.js para Auth/Sesiones
-└── public/         # Recursos estáticos (Imágenes, Screenshots, CVs)
-supabase/
-└── migrations/     # Scripts SQL para configuración de base de datos
+├── app/            # Rutas y páginas de Next.js (Admin, Blog, Projects)
+├── components/     # Arquitectura de componentes
+│   ├── features/   # Lógica específica (Home, Projects, Admin, Blog)
+│   ├── layout/     # Navbar, SpaNavbar y Footer unificados
+│   └── ui/         # Componentes base altamente personalizables
+├── lib/            # Utilidades y Supabase Client
+│   ├── api/        # Funciones de consulta a la base de datos
+│   └── data/       # Información estática y metadatos
+├── providers/      # Contextos (Theme, LayoutMode, QueryClient)
+├── types/          # Tipados compartidos y esquemas de base de datos
+└── public/         # Activos estáticos, CVs y Capturas
 ```
 
-## 📸 Galería del Proyecto
+## 📸 Galería del Sitio
 
-### Diseño Front-End
-![Portada del Portafolio](./public/screenshots/hero.png)
-![Sección de Proyectos](./public/screenshots/projects.png)
+### Interfaz Principal
+| Modo Claro | Modo Oscuro |
+|------------|-------------|
+| ![Hero Light](./public/screenshots/hero_light.png) | ![Hero Dark](./public/screenshots/hero_dark.png) |
 
-### Panel de Administración
-![Panel de Posts](./public/screenshots/admin_posts.png)
+### Sección de Proyectos
+![Grid de Proyectos](./public/screenshots/projects_grid.png)
 
-## 🛠️ Instalación Local
+### Panel Administrativo (Acceso Restringido)
+![Admin Login](./public/screenshots/admin_login.png)
 
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/MartirisYordenisGuzman/Portfolio.git
-   ```
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
-3. Configura tus variables de entorno en `.env.local`.
-4. Ejecuta el servidor de desarrollo:
-   ```bash
-   npm run dev
-   ```
-5. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+---
+
+## 🛠️ Instalación y Uso
+
+1. **Clonar:** `git clone https://github.com/MartirisYordenisGuzman/Portfolio.git`
+2. **Instalar:** `npm install`
+3. **Variables:** Configurar `.env.local` con `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+4. **Desarrollo:** `npm run dev`
 
 ---
 Construido con ❤️ por [Martiris Guzman](https://www.linkedin.com/in/martiris-yordenis-guzmán)
