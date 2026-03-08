@@ -134,7 +134,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                     </div>
                 </div>
                 <div className="flex items-center gap-3">
-                    <Button type="button" variant="outline" onClick={() => router.back()} className="bg-background/50 hover:bg-white transition-all shadow-sm">
+                    <Button type="button" variant="outline" onClick={() => router.back()} className="bg-background/50 hover:bg-accent shadow-sm transition-all">
                         Cancelar
                     </Button>
                     <Button
