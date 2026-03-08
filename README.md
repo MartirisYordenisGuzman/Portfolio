@@ -61,11 +61,20 @@ src/
 |------------|-------------|
 | ![Hero Light](./public/screenshots/hero_light.png) | ![Hero Dark](./public/screenshots/hero_dark.png) |
 
-### Sección de Proyectos
-![Grid de Proyectos](./public/screenshots/projects_grid.png)
+### Sección de Blog
+![Blog Index](./public/screenshots/blog_index.png)
+*Explora mis artículos técnicos con filtrado dinámico.*
 
-### Panel Administrativo (Acceso Restringido)
-![Admin Login](./public/screenshots/admin_login.png)
+### Panel Administrativo (Gestión Completa)
+El portafolio incluye un área privada para el control total del contenido:
+
+| Dashboard Principal | Gestión de Proyectos |
+|---------------------|----------------------|
+| ![Admin Dashboard](./public/screenshots/admin_dashboard.png) | ![Admin Projects](./public/screenshots/admin_projects_list.png) |
+
+| Gestión de Blog |
+|-----------------|
+| ![Admin Posts](./public/screenshots/admin_posts_list.png) |
 
 ---
 
