@@ -138,39 +138,89 @@ export function Navbar() {
                         </Link>
                     </div>
                     <div className="hidden md:flex items-center gap-2">
-                        <button
+                        <m.button
                             onClick={() => toggleLayoutMode()}
                             title="Cambiar a modo Single Page"
                             className={cn(
-                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:scale-110 active:scale-95",
-                                shouldAnimate && "animate-sync-pulse-shadow"
+                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95"
                             )}
+                            whileHover={{ scale: 1.1 }}
+                            animate={shouldAnimate ? {
+                                boxShadow: [
+                                    "0 0 0 0 rgba(79, 70, 229, 0)",
+                                    "0 0 0 8px rgba(79, 70, 229, 0.4)",
+                                    "0 0 0 0 rgba(79, 70, 229, 0)"
+                                ],
+                                backgroundColor: [
+                                    "transparent",
+                                    "rgba(79, 70, 229, 0.1)",
+                                    "transparent"
+                                ]
+                            } : {}}
+                            transition={shouldAnimate ? {
+                                boxShadow: { duration: 1.2, repeat: 2, ease: "easeInOut" },
+                                backgroundColor: { duration: 1.2, repeat: 2, ease: "easeInOut" }
+                            } : {}}
                         >
-                            <Layers className={cn(
-                                "h-4 w-4 relative z-10",
-                                shouldAnimate && "animate-sync-pulse-icon"
-                            )} />
+                            <m.div
+                                animate={shouldAnimate ? {
+                                    rotate: [0, -15, 15, -15, 15, 0],
+                                    scale: [1, 1.1, 1.1, 1.1, 1.1, 1]
+                                } : {}}
+                                transition={shouldAnimate ? {
+                                    duration: 1.2,
+                                    repeat: 2,
+                                    ease: "easeInOut"
+                                } : {}}
+                            >
+                                <Layers className="h-4 w-4 relative z-10" />
+                            </m.div>
                             <span className="sr-only">Modo SPA</span>
-                        </button>
+                        </m.button>
                         <ModeToggle />
                     </div>
 
                     {/* Mobile Menu Trigger (moved to right) */}
                     <div className="flex items-center gap-1 md:hidden">
-                        <button
+                        <m.button
                             onClick={() => toggleLayoutMode()}
                             title="Cambiar a modo Single Page"
                             className={cn(
-                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:scale-110 active:scale-95",
-                                shouldAnimate && "animate-sync-pulse-shadow"
+                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95"
                             )}
+                            whileHover={{ scale: 1.1 }}
+                            animate={shouldAnimate ? {
+                                boxShadow: [
+                                    "0 0 0 0 rgba(79, 70, 229, 0)",
+                                    "0 0 0 8px rgba(79, 70, 229, 0.4)",
+                                    "0 0 0 0 rgba(79, 70, 229, 0)"
+                                ],
+                                backgroundColor: [
+                                    "transparent",
+                                    "rgba(79, 70, 229, 0.1)",
+                                    "transparent"
+                                ]
+                            } : {}}
+                            transition={shouldAnimate ? {
+                                boxShadow: { duration: 1.2, repeat: 2, ease: "easeInOut" },
+                                backgroundColor: { duration: 1.2, repeat: 2, ease: "easeInOut" }
+                            } : {}}
                         >
-                            <Layers className={cn(
-                                "h-6 w-6 relative z-10",
-                                shouldAnimate && "animate-sync-pulse-icon"
-                            )} />
+                            <m.div
+                                animate={shouldAnimate ? {
+                                    rotate: [0, -15, 15, -15, 15, 0],
+                                    scale: [1, 1.1, 1.1, 1.1, 1.1, 1]
+                                } : {}}
+                                transition={shouldAnimate ? {
+                                    duration: 1.2,
+                                    repeat: 2,
+                                    ease: "easeInOut"
+                                } : {}}
+                            >
+                                <Layers className="h-6 w-6 relative z-10" />
+                            </m.div>
                             <span className="sr-only">Modo SPA</span>
-                        </button>
+                        </m.button>
                     </div>
 
                     <Sheet open={isOpen} onOpenChange={setIsOpen}>

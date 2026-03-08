@@ -175,20 +175,45 @@ export function SpaNavbar() {
                     <div className="w-px h-6 bg-border/50 mx-1 md:mx-2 shrink-0 hidden sm:block" />
 
                     <div className="flex items-center gap-1 shrink-0 pr-1 md:pr-2 pl-1">
-                        <button
+                        <m.button
                             onClick={() => toggleLayoutMode(activeSection)}
                             title="Cambiar a modo Multipágina"
                             className={cn(
-                                "relative inline-flex items-center justify-center rounded-full p-2 text-sm font-medium transition-all hover:bg-muted hover:text-foreground focus-visible:outline-none text-foreground/70 hover:scale-110 active:scale-95",
-                                shouldAnimate && "animate-sync-pulse-shadow"
+                                "relative inline-flex items-center justify-center rounded-full p-2 text-sm font-medium transition-all hover:bg-muted hover:text-foreground focus-visible:outline-none text-foreground/70 active:scale-95"
                             )}
+                            whileHover={{ scale: 1.1 }}
+                            animate={shouldAnimate ? {
+                                boxShadow: [
+                                    "0 0 0 0 rgba(79, 70, 229, 0)",
+                                    "0 0 0 8px rgba(79, 70, 229, 0.4)",
+                                    "0 0 0 0 rgba(79, 70, 229, 0)"
+                                ],
+                                backgroundColor: [
+                                    "transparent",
+                                    "rgba(79, 70, 229, 0.1)",
+                                    "transparent"
+                                ]
+                            } : {}}
+                            transition={shouldAnimate ? {
+                                boxShadow: { duration: 1.2, repeat: 2, ease: "easeInOut" },
+                                backgroundColor: { duration: 1.2, repeat: 2, ease: "easeInOut" }
+                            } : {}}
                         >
-                            <Layers className={cn(
-                                "h-4 w-4 md:h-5 md:w-5 relative z-10",
-                                shouldAnimate && "animate-sync-pulse-icon"
-                            )} />
+                            <m.div
+                                animate={shouldAnimate ? {
+                                    rotate: [0, -15, 15, -15, 15, 0],
+                                    scale: [1, 1.1, 1.1, 1.1, 1.1, 1]
+                                } : {}}
+                                transition={shouldAnimate ? {
+                                    duration: 1.2,
+                                    repeat: 2,
+                                    ease: "easeInOut"
+                                } : {}}
+                            >
+                                <Layers className="h-4 w-4 md:h-5 md:w-5 relative z-10" />
+                            </m.div>
                             <span className="sr-only">Modo Multipágina</span>
-                        </button>
+                        </m.button>
                         <div className="scale-90 md:scale-100 flex items-center justify-center">
                             <ModeToggle />
                         </div>
