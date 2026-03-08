@@ -14,7 +14,7 @@ interface ProjectsViewProps {
 }
 
 export function ProjectsView({ projects, isHome = false }: ProjectsViewProps) {
-    const [selectedTag, setSelectedTag] = useState<string | null>(null)
+    const [selectedTags, setSelectedTags] = useState<string[]>([])
     const [visibleCount, setVisibleCount] = useState<number>(isHome ? 2 : 3)
 
     const allTags = useMemo(() => {
@@ -26,17 +26,25 @@ export function ProjectsView({ projects, isHome = false }: ProjectsViewProps) {
     }, [projects])
 
     const filteredProjects = useMemo(() => {
-        if (!selectedTag) return projects
+        if (selectedTags.length === 0) return projects
         return projects.filter(project =>
-            project.tags?.some(tag => tag.name === selectedTag)
+            project.tags?.some(tag => selectedTags.includes(tag.name))
         )
-    }, [projects, selectedTag])
+    }, [projects, selectedTags])
 
     const visibleProjects = filteredProjects.slice(0, visibleCount)
     const hasMore = visibleCount < filteredProjects.length
 
     const handleTagSelect = (tag: string | null) => {
-        setSelectedTag(tag)
+        if (tag === null) {
+            setSelectedTags([])
+        } else {
+            setSelectedTags(prev =>
+                prev.includes(tag)
+                    ? prev.filter(t => t !== tag)
+                    : [...prev, tag]
+            )
+        }
         setVisibleCount(isHome ? 2 : 3) // Reset visibility when filter changes
     }
 
@@ -60,7 +68,7 @@ export function ProjectsView({ projects, isHome = false }: ProjectsViewProps) {
                         <TechTag
                             name="Todos"
                             isFilter
-                            active={selectedTag === null}
+                            active={selectedTags.length === 0}
                             onClick={() => handleTagSelect(null)}
                             className="text-xs h-7 px-4"
                         />
@@ -69,7 +77,7 @@ export function ProjectsView({ projects, isHome = false }: ProjectsViewProps) {
                                 key={tag}
                                 name={tag}
                                 isFilter
-                                active={selectedTag === tag}
+                                active={selectedTags.includes(tag)}
                                 onClick={() => handleTagSelect(tag)}
                                 className="text-xs h-7 px-4"
                             />
