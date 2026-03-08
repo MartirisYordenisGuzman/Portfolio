@@ -77,7 +77,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                         </a>
                     )}
                     <Link href={`/projects/${project.slug}`}>
-                        <Button variant="outline" size="sm" className="rounded-lg px-5 border-zinc-700/50 hover:bg-zinc-900 transition-colors h-9">
+                        <Button variant="outline" size="sm" className="rounded-lg px-5 border-zinc-700/50 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900 transition-colors h-9">
                             <ExternalLink className="mr-2 h-3.5 w-3.5" />
                             Detalles
                         </Button>
