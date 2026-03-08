@@ -19,7 +19,7 @@ import {
     SiJest,
     SiVite,
     SiHtml5,
-    SiCss3,
+    SiCss,
     SiGo,
     SiRust,
     SiPrisma,
@@ -154,7 +154,7 @@ const techConfig: Record<string, { color: string, icon: React.ComponentType<{ cl
         color: "text-blue-600 dark:text-blue-400",
         bg: "bg-blue-50 dark:bg-blue-950/20",
         border: "border-blue-200 dark:border-blue-800/30",
-        icon: SiCss3
+        icon: SiCss
     },
     "go": {
         color: "text-sky-600 dark:text-sky-400",
