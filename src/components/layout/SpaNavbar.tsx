@@ -179,13 +179,13 @@ export function SpaNavbar() {
                             onClick={() => toggleLayoutMode(activeSection)}
                             title="Cambiar a modo Multipágina"
                             className={cn(
-                                "relative inline-flex items-center justify-center rounded-full p-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none text-foreground/70",
-                                shouldAnimate && "animate-[sync-pulse-shadow_1.5s_ease-out_3]"
+                                "relative inline-flex items-center justify-center rounded-full p-2 text-sm font-medium transition-all hover:bg-muted hover:text-foreground focus-visible:outline-none text-foreground/70 hover:scale-110 active:scale-95",
+                                shouldAnimate && "animate-sync-pulse-shadow"
                             )}
                         >
                             <Layers className={cn(
                                 "h-4 w-4 md:h-5 md:w-5 relative z-10",
-                                shouldAnimate && "animate-[sync-pulse-icon_1.5s_ease-out_3]"
+                                shouldAnimate && "animate-sync-pulse-icon"
                             )} />
                             <span className="sr-only">Modo Multipágina</span>
                         </button>

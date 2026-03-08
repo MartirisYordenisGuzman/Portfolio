@@ -142,13 +142,13 @@ export function Navbar() {
                             onClick={() => toggleLayoutMode()}
                             title="Cambiar a modo Single Page"
                             className={cn(
-                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-                                shouldAnimate && "animate-[sync-pulse-shadow_1.5s_ease-out_3]"
+                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:scale-110 active:scale-95",
+                                shouldAnimate && "animate-sync-pulse-shadow"
                             )}
                         >
                             <Layers className={cn(
                                 "h-4 w-4 relative z-10",
-                                shouldAnimate && "animate-[sync-pulse-icon_1.5s_ease-out_3]"
+                                shouldAnimate && "animate-sync-pulse-icon"
                             )} />
                             <span className="sr-only">Modo SPA</span>
                         </button>
@@ -161,13 +161,13 @@ export function Navbar() {
                             onClick={() => toggleLayoutMode()}
                             title="Cambiar a modo Single Page"
                             className={cn(
-                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-                                shouldAnimate && "animate-[sync-pulse-shadow_1.5s_ease-out_3]"
+                                "relative inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:scale-110 active:scale-95",
+                                shouldAnimate && "animate-sync-pulse-shadow"
                             )}
                         >
                             <Layers className={cn(
                                 "h-6 w-6 relative z-10",
-                                shouldAnimate && "animate-[sync-pulse-icon_1.5s_ease-out_3]"
+                                shouldAnimate && "animate-sync-pulse-icon"
                             )} />
                             <span className="sr-only">Modo SPA</span>
                         </button>
