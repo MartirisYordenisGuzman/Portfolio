@@ -156,6 +156,24 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                 {/* Main Content Column */}
                 <div className="lg:col-span-2 space-y-10">
                     <div className="space-y-8">
+                        {/* Gallery Section */}
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-3 text-[#4f46e5] font-bold text-lg border-b border-muted py-2">
+                                <ImageIcon className="h-5 w-5" />
+                                Galería del Proyecto
+                            </div>
+                            <div className="p-8 border-2 border-dashed rounded-3xl bg-muted/10 border-muted/50 transition-colors hover:bg-muted/20">
+                                <ImageUpload
+                                    value={galleryImages}
+                                    onChange={(urls) => setGalleryImages(urls as string[])}
+                                    multiple
+                                    maxImages={8}
+                                    bucket="portfolio"
+                                    folder="projects/gallery"
+                                />
+                            </div>
+                        </div>
+
                         {/* Info Section */}
                         <div className="space-y-6">
                             <div className="flex items-center gap-3 text-[#4f46e5] font-bold text-lg border-b border-muted py-2">
@@ -224,23 +242,6 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                             </div>
                         </div>
 
-                        {/* Gallery Section */}
-                        <div className="space-y-6">
-                            <div className="flex items-center gap-3 text-[#4f46e5] font-bold text-lg border-b border-muted py-2">
-                                <ImageIcon className="h-5 w-5" />
-                                Galería del Proyecto
-                            </div>
-                            <div className="p-8 border-2 border-dashed rounded-3xl bg-muted/10 border-muted/50 transition-colors hover:bg-muted/20">
-                                <ImageUpload
-                                    value={galleryImages}
-                                    onChange={(urls) => setGalleryImages(urls as string[])}
-                                    multiple
-                                    maxImages={8}
-                                    bucket="portfolio"
-                                    folder="projects/gallery"
-                                />
-                            </div>
-                        </div>
                     </div>
                 </div>
 

@@ -4,8 +4,8 @@ import { Clock } from "lucide-react"
 import { MDXRemote } from "next-mdx-remote/rsc"
 
 import { getPostBySlug, getPosts } from "@/lib/api/posts"
-import { Badge } from "@/components/ui/badge"
 import { SmartBackLink } from "@/components/ui/smart-back-link"
+import { TechTag } from "@/components/features/projects/TechTag"
 
 interface BlogPostPageProps {
     params: Promise<{
@@ -112,11 +112,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
                 {/* Footer Tags */}
                 <div className="mt-12 md:mt-16 py-12 border-t">
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2.5">
                         {post.tags?.map((tag) => (
-                            <Badge key={tag.id} variant="secondary" className="px-3 py-1 text-sm font-normal rounded-full">
-                                {tag.name}
-                            </Badge>
+                            <TechTag key={tag.id} name={tag.name} />
                         ))}
                     </div>
                 </div>
