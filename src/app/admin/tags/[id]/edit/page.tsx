@@ -21,15 +21,6 @@ export default async function EditTagPage({ params }: EditTagPageProps) {
     }
 
     return (
-        <div className="space-y-6">
-            <div>
-                <h1 className="text-3xl font-bold tracking-tight">Editar Etiqueta</h1>
-                <p className="text-muted-foreground">
-                    Modifica los detalles de la etiqueta
-                </p>
-            </div>
-
-            <TagForm tag={tag} isEditing />
-        </div>
+        <TagForm tag={tag} isEditing />
     )
 }

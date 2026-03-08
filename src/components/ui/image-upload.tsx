@@ -139,7 +139,7 @@ export function ImageUpload({
                         type="button"
                         disabled={disabled || isUploading}
                         className={cn(
-                            "flex flex-col items-center justify-center rounded-xl border-2 border-dashed transition-all",
+                            "flex flex-col items-center justify-center rounded-xl border-2 border-dashed transition-all cursor-pointer",
                             "hover:bg-primary/5 hover:border-primary/50 group bg-muted/30",
                             multiple ? "aspect-square" : "aspect-video max-w-xl",
                             isUploading && "animate-pulse cursor-not-allowed"

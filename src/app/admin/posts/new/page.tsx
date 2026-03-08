@@ -6,9 +6,6 @@ export default async function NewPostPage() {
     const { data: tags } = await supabase.from("tags").select("*")
 
     return (
-        <div className="space-y-6">
-            <h2 className="text-3xl font-bold tracking-tight">Nuevo Post</h2>
-            <PostForm allTags={tags || []} />
-        </div>
+        <PostForm allTags={tags || []} />
     )
 }

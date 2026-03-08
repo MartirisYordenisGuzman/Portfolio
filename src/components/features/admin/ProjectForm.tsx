@@ -147,7 +147,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                         ) : (
                             <Save className="h-4 w-4" />
                         )}
-                        {isEditing ? "Actualizar" : "Gurdar Proyecto"}
+                        {isEditing ? "Actualizar" : "Guardar Proyecto"}
                     </Button>
                 </div>
             </div>

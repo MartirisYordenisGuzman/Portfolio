@@ -40,9 +40,6 @@ export default async function EditPostPage({ params }: EditPostPageProps) {
     }
 
     return (
-        <div className="space-y-6">
-            <h2 className="text-3xl font-bold tracking-tight">Editar Post</h2>
-            <PostForm post={postWithTags} isEditing allTags={tags || []} />
-        </div>
+        <PostForm post={postWithTags} isEditing allTags={tags || []} />
     )
 }

@@ -17,7 +17,7 @@ export function SmartBackLink({ spaHref, multiHref, label }: SmartBackLinkProps)
     return (
         <Link
             href={isSpaMode ? spaHref : multiHref}
-            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
         >
             <ArrowLeft className="mr-2 h-4 w-4" />
             {label}

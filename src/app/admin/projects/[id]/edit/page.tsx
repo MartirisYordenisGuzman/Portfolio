@@ -27,7 +27,8 @@ export default async function EditProjectPage({ params }: EditProjectPageProps) 
             *,
             project_tags (
                 tags (*)
-            )
+            ),
+            project_images (*)
         `)
         .eq("id", id)
         .single()
@@ -42,13 +43,11 @@ export default async function EditProjectPage({ params }: EditProjectPageProps) 
     // Transform project tags to flattened structure expected by form
     const projectWithTags: Project = {
         ...project,
-        tags: (project.project_tags as { tags: Tag }[])?.map((pt) => pt.tags) || []
+        tags: (project.project_tags as { tags: Tag }[])?.map((pt) => pt.tags) || [],
+        gallery_images: project.project_images || []
     }
 
     return (
-        <div className="space-y-6">
-            <h2 className="text-3xl font-bold tracking-tight">Editar Proyecto</h2>
-            <ProjectForm project={projectWithTags} isEditing allTags={tags || []} />
-        </div>
+        <ProjectForm project={projectWithTags} isEditing allTags={tags || []} />
     )
 }

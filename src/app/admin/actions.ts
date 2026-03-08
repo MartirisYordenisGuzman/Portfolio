@@ -34,18 +34,25 @@ async function manageTags(supabase: SupabaseClient, type: 'project' | 'post', id
 
 // Helper to manage project images
 async function manageProjectImages(supabase: SupabaseClient, projectId: string, imagesJson: string) {
-    if (!imagesJson) return;
+    if (!imagesJson) {
+        console.log("No images JSON provided for project:", projectId);
+        return;
+    }
 
     let imageUrls: string[] = []
     try {
         imageUrls = JSON.parse(imagesJson)
-    } catch {
+        console.log(`Managing gallery for project ${projectId}. Found ${imageUrls.length} images.`);
+    } catch (e) {
+        console.error("Failed to parse gallery images JSON:", e);
         return
     }
 
     // Delete existing images (simple replacement strategy)
-    // For a more advanced version, we could diff them to keep IDs, but full replace is easier for ordering
-    await supabase.from('project_images').delete().eq('project_id', projectId)
+    const { error: deleteError } = await supabase.from('project_images').delete().eq('project_id', projectId)
+    if (deleteError) {
+        console.error("Error deleting old project images:", deleteError);
+    }
 
     if (imageUrls.length > 0) {
         const inserts = imageUrls.map((url, index) => ({
@@ -53,7 +60,12 @@ async function manageProjectImages(supabase: SupabaseClient, projectId: string, 
             url: url,
             display_order: index
         }))
-        await supabase.from('project_images').insert(inserts)
+        const { error: insertError } = await supabase.from('project_images').insert(inserts)
+        if (insertError) {
+            console.error("Error inserting new project images:", insertError);
+        } else {
+            console.log(`Successfully inserted ${inserts.length} images for project ${projectId}`);
+        }
     }
 }
 
