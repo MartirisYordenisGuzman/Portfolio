@@ -140,7 +140,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="gap-2 shadow-lg bg-[#5b46e8] hover:bg-[#4a36d7] text-white px-6 font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
+                        className="gap-2 shadow-lg bg-[#5b46e8] hover:bg-[#4a36d7] dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white px-6 font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
                     >
                         {loading ? (
                             <Loader2 className="h-4 w-4 animate-spin" />
@@ -188,7 +188,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                                         value={title}
                                         onChange={handleTitleChange}
                                         placeholder="Ej: E-commerce Moderno"
-                                        className="h-14 text-lg font-semibold bg-white border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl transition-all"
+                                        className="h-14 text-lg font-semibold bg-background border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl transition-all"
                                         required
                                     />
                                 </div>
@@ -196,7 +196,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                                     <div className="flex items-center justify-between pl-1">
                                         <Label htmlFor="slug" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/80">Slug (URL)</Label>
                                         {isAutoSlug && !isEditing && (
-                                            <Badge variant="secondary" className="text-[10px] h-4 font-bold bg-indigo-50 text-indigo-600 border-none px-1.5">AUTO</Badge>
+                                            <Badge variant="secondary" className="text-[10px] h-4 font-bold bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 border-none px-1.5">AUTO</Badge>
                                         )}
                                     </div>
                                     <Input
@@ -225,7 +225,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                                         name="short_description"
                                         defaultValue={project?.short_description ?? ""}
                                         placeholder="Resumen ejecutivo para la tarjeta de presentación..."
-                                        className="h-24 bg-white border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl resize-none p-4 text-base leading-relaxed"
+                                        className="h-24 bg-background border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl resize-none p-4 text-base leading-relaxed"
                                         required
                                     />
                                 </div>
@@ -236,7 +236,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                                         name="content"
                                         defaultValue={project?.content ?? ""}
                                         placeholder="# Detalles del proyecto..."
-                                        className="min-h-[400px] font-mono bg-white border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl p-6 leading-relaxed"
+                                        className="min-h-[400px] font-mono bg-background border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl p-6 leading-relaxed"
                                     />
                                 </div>
                             </div>
@@ -248,7 +248,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                 {/* Sidebar Column */}
                 <div className="space-y-10">
                     {/* Cover Section */}
-                    <Card className="border-muted/50 shadow-xl rounded-3xl overflow-hidden bg-white/50 backdrop-blur-sm">
+                    <Card className="border-muted/50 shadow-xl rounded-3xl overflow-hidden bg-card/50 backdrop-blur-sm">
                         <CardContent className="p-8 space-y-6">
                             <Label className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/80 flex items-center gap-2">
                                 <ImageIcon className="h-4 w-4" />
@@ -266,7 +266,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                     </Card>
 
                     {/* Links Section */}
-                    <Card className="border-muted/50 shadow-lg rounded-3xl bg-white/50 backdrop-blur-sm">
+                    <Card className="border-muted/50 shadow-lg rounded-3xl bg-card/50 backdrop-blur-sm">
                         <CardContent className="p-8 space-y-8">
                             <Label className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/80 flex items-center gap-2">
                                 <LinkIcon className="h-4 w-4 text-indigo-500" />
@@ -304,7 +304,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                     </Card>
 
                     {/* Metadata Section */}
-                    <Card className="border-muted/50 shadow-lg rounded-3xl bg-white/50 backdrop-blur-sm">
+                    <Card className="border-muted/50 shadow-lg rounded-3xl bg-card/50 backdrop-blur-sm">
                         <CardContent className="p-8 space-y-8">
                             <div className="space-y-6">
                                 <div className="space-y-4">
@@ -322,7 +322,7 @@ export function ProjectForm({ project, isEditing = false, allTags = EMPTY_TAGS }
                                                         variant={isSelected ? "default" : "outline"}
                                                         className={cn(
                                                             "cursor-pointer hover:scale-110 transition-all select-none h-8 px-4 font-semibold text-xs rounded-full",
-                                                            isSelected ? "bg-indigo-600 text-white border-none shadow-md" : "bg-white/80 text-muted-foreground/80 border-muted-foreground/20 hover:bg-muted/30"
+                                                            isSelected ? "bg-indigo-600 text-white border-none shadow-md" : "bg-muted/50 text-muted-foreground/80 border-muted-foreground/20 hover:bg-muted/70"
                                                         )}
                                                         onClick={() => toggleTag(tag.id)}
                                                     >

@@ -138,7 +138,7 @@ export function PostForm({ post, isEditing = false, allTags = EMPTY_TAGS }: Post
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="gap-2 shadow-lg bg-[#5b46e8] hover:bg-[#4a36d7] text-white px-6 font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
+                        className="gap-2 shadow-lg bg-[#5b46e8] hover:bg-[#4a36d7] dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white px-6 font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
                     >
                         {loading ? (
                             <Loader2 className="h-4 w-4 animate-spin" />
@@ -168,7 +168,7 @@ export function PostForm({ post, isEditing = false, allTags = EMPTY_TAGS }: Post
                                         value={title}
                                         onChange={handleTitleChange}
                                         placeholder="Cómo dominar React en 2024"
-                                        className="h-14 text-lg font-semibold bg-white border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl transition-all"
+                                        className="h-14 text-lg font-semibold bg-background border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl transition-all"
                                         required
                                     />
                                 </div>
@@ -176,7 +176,7 @@ export function PostForm({ post, isEditing = false, allTags = EMPTY_TAGS }: Post
                                     <div className="flex items-center justify-between pl-1">
                                         <Label htmlFor="slug" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/80">Slug (URL)</Label>
                                         {isAutoSlug && !isEditing && (
-                                            <Badge variant="secondary" className="text-[10px] h-4 font-bold bg-indigo-50 text-indigo-600 border-none px-1.5">AUTO</Badge>
+                                            <Badge variant="secondary" className="text-[10px] h-4 font-bold bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 border-none px-1.5">AUTO</Badge>
                                         )}
                                     </div>
                                     <Input
@@ -205,7 +205,7 @@ export function PostForm({ post, isEditing = false, allTags = EMPTY_TAGS }: Post
                                         name="excerpt"
                                         defaultValue={post?.excerpt}
                                         placeholder="Un breve resumen que atrape al lector..."
-                                        className="h-24 bg-white border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl resize-none p-4 text-base leading-relaxed"
+                                        className="h-24 bg-background border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl resize-none p-4 text-base leading-relaxed"
                                         required
                                     />
                                 </div>
@@ -216,7 +216,7 @@ export function PostForm({ post, isEditing = false, allTags = EMPTY_TAGS }: Post
                                         name="content"
                                         defaultValue={post?.content || ""}
                                         placeholder="# Introducción..."
-                                        className="min-h-[500px] font-mono bg-white border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl p-6 leading-relaxed text-base"
+                                        className="min-h-[500px] font-mono bg-background border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl p-6 leading-relaxed text-base"
                                     />
                                 </div>
                             </div>
@@ -227,7 +227,7 @@ export function PostForm({ post, isEditing = false, allTags = EMPTY_TAGS }: Post
                 {/* Sidebar Column */}
                 <div className="space-y-10">
                     {/* Cover Section */}
-                    <Card className="border-muted/50 shadow-xl rounded-3xl overflow-hidden bg-white/50 backdrop-blur-sm">
+                    <Card className="border-muted/50 shadow-xl rounded-3xl overflow-hidden bg-card/50 backdrop-blur-sm">
                         <CardContent className="p-8 space-y-6">
                             <Label className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/80 flex items-center gap-2">
                                 <ImageIcon className="h-4 w-4" />
@@ -245,7 +245,7 @@ export function PostForm({ post, isEditing = false, allTags = EMPTY_TAGS }: Post
                     </Card>
 
                     {/* Metadata Section */}
-                    <Card className="border-muted/50 shadow-lg rounded-3xl bg-white/50 backdrop-blur-sm">
+                    <Card className="border-muted/50 shadow-lg rounded-3xl bg-card/50 backdrop-blur-sm">
                         <CardContent className="p-8 space-y-8">
                             <div className="space-y-6">
                                 <div className="space-y-4">
@@ -263,7 +263,7 @@ export function PostForm({ post, isEditing = false, allTags = EMPTY_TAGS }: Post
                                                         variant={isSelected ? "default" : "outline"}
                                                         className={cn(
                                                             "cursor-pointer hover:scale-110 transition-all select-none h-8 px-4 font-semibold text-xs rounded-full",
-                                                            isSelected ? "bg-indigo-600 text-white border-none shadow-md" : "bg-white/80 text-muted-foreground/80 border-muted-foreground/20 hover:bg-muted/30"
+                                                            isSelected ? "bg-indigo-600 text-white border-none shadow-md" : "bg-muted/50 text-muted-foreground/80 border-muted-foreground/20 hover:bg-muted/70"
                                                         )}
                                                         onClick={() => toggleTag(tag.id)}
                                                     >

@@ -78,11 +78,11 @@ export function TagForm({ tag, isEditing = false }: TagFormProps) {
     }
 
     return (
-        <Card className="max-w-xl mx-auto border-muted/50 shadow-2xl rounded-3xl overflow-hidden bg-white/80 backdrop-blur-md">
+        <Card className="max-w-xl mx-auto border-muted/50 shadow-2xl rounded-3xl overflow-hidden bg-card/80 backdrop-blur-md">
             <CardHeader className="bg-muted/30 border-b p-8">
                 <div className="flex items-center gap-4">
-                    <div className="p-3 bg-indigo-100 rounded-2xl">
-                        <TagIcon className="h-6 w-6 text-[#4f46e5]" />
+                    <div className="p-3 bg-indigo-100 dark:bg-indigo-950/40 rounded-2xl">
+                        <TagIcon className="h-6 w-6 text-[#4f46e5] dark:text-indigo-400" />
                     </div>
                     <div>
                         <CardTitle className="text-2xl font-extrabold tracking-tight">
@@ -102,7 +102,7 @@ export function TagForm({ tag, isEditing = false }: TagFormProps) {
                                 value={name}
                                 onChange={handleNameChange}
                                 placeholder="React, UI/UX, Fotografía..."
-                                className="h-14 bg-white border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl transition-all font-semibold"
+                                className="h-14 bg-background border-muted shadow-sm focus-visible:ring-indigo-500 rounded-xl transition-all font-semibold"
                                 required
                             />
                         </div>
@@ -110,7 +110,7 @@ export function TagForm({ tag, isEditing = false }: TagFormProps) {
                             <div className="flex items-center justify-between pl-1">
                                 <Label htmlFor="slug" className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/80">Slug (URL)</Label>
                                 {isAutoSlug && !isEditing && (
-                                    <div className="flex items-center gap-1.5 text-[10px] text-indigo-600 font-bold bg-indigo-50 px-2 py-0.5 rounded-full animate-pulse">
+                                    <div className="flex items-center gap-1.5 text-[10px] text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50 dark:bg-indigo-950/40 px-2 py-0.5 rounded-full animate-pulse">
                                         <Sparkles className="h-3 w-3" />
                                         <span>AUTO</span>
                                     </div>
@@ -134,7 +134,7 @@ export function TagForm({ tag, isEditing = false }: TagFormProps) {
                         <Button
                             type="submit"
                             disabled={loading}
-                            className="min-w-[140px] gap-2 shadow-lg bg-[#5b46e8] hover:bg-[#4a36d7] text-white h-12 rounded-xl font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
+                            className="min-w-[140px] gap-2 shadow-lg bg-[#5b46e8] hover:bg-[#4a36d7] dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white h-12 rounded-xl font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
                         >
                             {loading ? (
                                 <Loader2 className="h-4 w-4 animate-spin" />

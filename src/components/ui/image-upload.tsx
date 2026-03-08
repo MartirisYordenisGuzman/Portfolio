@@ -104,7 +104,7 @@ export function ImageUpload({
                     <div
                         key={url}
                         className={cn(
-                            "relative group rounded-xl overflow-hidden border bg-muted shadow-sm transition-all hover:shadow-md",
+                            "relative group rounded-xl overflow-hidden border bg-background shadow-sm transition-all hover:shadow-md",
                             multiple ? "aspect-square" : "aspect-video max-w-xl"
                         )}
                     >
