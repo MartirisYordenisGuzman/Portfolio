@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react"
 import { Project } from "@/types/database"
 import { ProjectCard } from "@/components/features/projects/ProjectCard"
+import { TechTag } from "@/components/features/projects/TechTag"
 import { ScrollAnimation } from "@/components/ui/scroll-animation"
 import { Button } from "@/components/ui/button"
 import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion"
@@ -55,25 +56,23 @@ export function ProjectsView({ projects, isHome = false }: ProjectsViewProps) {
                 </div>
 
                 {allTags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 pt-2">
-                        <Button
-                            variant={selectedTag === null ? "default" : "secondary"}
-                            size="sm"
-                            className="rounded-full rounded-md text-xs h-8"
+                    <div className="flex flex-wrap gap-2.5 pt-2">
+                        <TechTag
+                            name="Todos"
+                            isFilter
+                            active={selectedTag === null}
                             onClick={() => handleTagSelect(null)}
-                        >
-                            Todos
-                        </Button>
+                            className="text-xs h-7 px-4"
+                        />
                         {allTags.map(tag => (
-                            <Button
+                            <TechTag
                                 key={tag}
-                                variant={selectedTag === tag ? "default" : "secondary"}
-                                size="sm"
-                                className="rounded-full rounded-md text-xs h-8"
+                                name={tag}
+                                isFilter
+                                active={selectedTag === tag}
                                 onClick={() => handleTagSelect(tag)}
-                            >
-                                {tag}
-                            </Button>
+                                className="text-xs h-7 px-4"
+                            />
                         ))}
                     </div>
                 )}
