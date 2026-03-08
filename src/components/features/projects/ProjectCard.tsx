@@ -5,13 +5,20 @@ import { Github, ExternalLink } from "lucide-react"
 import { Project } from "@/types/database"
 import { Button } from "@/components/ui/button"
 
+import { useState } from "react"
+import { TechTag } from "@/components/features/projects/TechTag"
+
 interface ProjectCardProps {
     project: Project
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-    const hasNextjs = project.tags?.some(tag => tag.name.toLowerCase().includes('next'))
-    const hasTailwind = project.tags?.some(tag => tag.name.toLowerCase().includes('tailwind'))
+    const [showAllTags, setShowAllTags] = useState(false)
+    const initialTagsCount = 4
+    const hasMoreTags = (project.tags?.length || 0) > initialTagsCount
+    const displayedTags = showAllTags
+        ? project.tags
+        : project.tags?.slice(0, initialTagsCount)
 
     return (
         <div className="group relative grid grid-cols-1 gap-6 lg:grid-cols-12 items-center">
@@ -40,32 +47,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
                         {project.title}
                     </h3>
 
-                    {/* Tech Badges (Styled like reference) */}
+                    {/* Tech Badges */}
                     <div className="flex flex-wrap gap-2.5">
-                        {hasNextjs && (
-                            <div className="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-3.5 py-1 text-[10px] font-semibold text-white border border-white/10">
-                                <svg className="h-2.5 w-2.5" viewBox="0 0 128 128">
-                                    <path fill="currentColor" d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c11.2 0 21.7-2.9 30.8-7.9L48.4 55.3v36.6h-6.8V41.8h6.8l50.5 73.9C118.1 105.7 128 86 128 64c0-35.3-28.7-64-64-64zm0 10.6c3.2 0 6.3.3 9.4.8L33.2 68.3v-23l30.8-34.7zm31.1 31.2v61.4c-2.4 2.1-5 4-7.7 5.7L42.5 41.8h52.6z" />
-                                </svg>
-                                Next.js
-                            </div>
-                        )}
-                        {hasTailwind && (
-                            <div className="inline-flex items-center gap-2 rounded-full bg-cyan-950/30 px-3.5 py-1 text-[10px] font-semibold text-cyan-400 border border-cyan-500/20">
-                                <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M22 12c-2.5 2.5-5.5 4-9 4s-6.5-1.5-9-4c2.5-2.5 5.5-4 9-4s6.5 1.5 9 4z" />
-                                    <path d="M13 16a4 4 0 0 1-2.5-7.5" fill="currentColor" />
-                                    <path d="m3 21 18-18" />
-                                </svg>
-                                Tailwind CSS
-                            </div>
-                        )}
-                        {/* Other tags as standard badges if any */}
-                        {project.tags?.filter(t => !t.name.toLowerCase().includes('next') && !t.name.toLowerCase().includes('tailwind')).map((tag) => (
-                            <div key={tag.id} className="inline-flex items-center rounded-full bg-secondary/50 px-2.5 py-0.5 text-[10px] font-medium text-secondary-foreground border border-border">
-                                {tag.name}
-                            </div>
+                        {displayedTags?.map((tag) => (
+                            <TechTag key={tag.id} name={tag.name} />
                         ))}
+                        {hasMoreTags && (
+                            <button
+                                onClick={() => setShowAllTags(!showAllTags)}
+                                className="inline-flex items-center rounded-full bg-secondary/30 px-2.5 py-1 text-[10px] font-medium text-secondary-foreground border border-border hover:bg-secondary/50 transition-colors"
+                            >
+                                {showAllTags ? "Ver menos" : `+${(project.tags?.length || 0) - initialTagsCount} ver más`}
+                            </button>
+                        )}
                     </div>
 
                     <p className="text-base text-muted-foreground leading-relaxed max-w-lg">

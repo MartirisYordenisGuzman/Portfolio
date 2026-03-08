@@ -9,11 +9,12 @@ import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion"
 
 interface ProjectsViewProps {
     projects: Project[]
+    isHome?: boolean
 }
 
-export function ProjectsView({ projects }: ProjectsViewProps) {
+export function ProjectsView({ projects, isHome = false }: ProjectsViewProps) {
     const [selectedTag, setSelectedTag] = useState<string | null>(null)
-    const [visibleCount, setVisibleCount] = useState<number>(3)
+    const [visibleCount, setVisibleCount] = useState<number>(isHome ? 2 : 3)
 
     const allTags = useMemo(() => {
         const tags = new Set<string>()
@@ -35,7 +36,7 @@ export function ProjectsView({ projects }: ProjectsViewProps) {
 
     const handleTagSelect = (tag: string | null) => {
         setSelectedTag(tag)
-        setVisibleCount(3) // Reset visibility when filter changes
+        setVisibleCount(isHome ? 2 : 3) // Reset visibility when filter changes
     }
 
     return (

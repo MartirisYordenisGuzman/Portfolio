@@ -36,7 +36,7 @@ export function HomeContent({ projects, posts }: HomeContentProps) {
             {isSpaMode && (
                 <div className="flex flex-col gap-24 md:gap-32 pt-10 border-t border-border/40">
                     <div id="projects" className="scroll-mt-24">
-                        <ProjectsView projects={projects} />
+                        <ProjectsView projects={projects} isHome={true} />
                     </div>
 
                     <div id="about" className="scroll-mt-24">
